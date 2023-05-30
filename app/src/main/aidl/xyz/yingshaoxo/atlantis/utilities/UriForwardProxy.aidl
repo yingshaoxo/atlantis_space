@@ -1,4 +1,4 @@
 // UriForwardProx.aidl
-package xyz.yingshaoxo.atlantis.util;
+package xyz.yingshaoxo.atlantis.utilities;
 
 parcelable UriForwardProxy;

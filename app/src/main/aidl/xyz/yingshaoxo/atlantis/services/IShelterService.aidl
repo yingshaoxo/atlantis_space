@@ -7,8 +7,8 @@ import xyz.yingshaoxo.atlantis.services.IAppInstallCallback;
 import xyz.yingshaoxo.atlantis.services.IGetAppsCallback;
 import xyz.yingshaoxo.atlantis.services.ILoadIconCallback;
 import xyz.yingshaoxo.atlantis.services.IStartActivityProxy;
-import xyz.yingshaoxo.atlantis.util.ApplicationInfoWrapper;
-import xyz.yingshaoxo.atlantis.util.UriForwardProxy;
+import xyz.yingshaoxo.atlantis.utilities.ApplicationInfoWrapper;
+import xyz.yingshaoxo.atlantis.utilities.UriForwardProxy;
 
 interface IShelterService {
     void ping();

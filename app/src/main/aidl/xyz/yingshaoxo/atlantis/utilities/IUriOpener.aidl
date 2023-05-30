@@ -1,5 +1,5 @@
 // IUriOpener.aidl
-package xyz.yingshaoxo.atlantis.util;
+package xyz.yingshaoxo.atlantis.utilities;
 
 import android.os.ParcelFileDescriptor;
 
