@@ -6,7 +6,7 @@ Atlantis an isolated space that utilizes everything to protect your freedom to f
 <!-- Downloads
 ===
 
-- [F-Droid](https://f-droid.org/app/net.typeblog.shelter) (Signed by F-Droid)
+- [F-Droid](https://f-droid.org/app/xyz.yingshaoxo.atlantis) (Signed by F-Droid)
 - [Custom F-Droid Repository](https://fdroid.typeblog.net) (Signed by PeterCxy, contains latest development versions)
 
 You cannot switch between versions listed above that have different signature without uninstalling Shelter first.
