@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Shelter</string>
+    <string name="app_name" translatable="false">Atlantis</string>
     <string name="first_run_alert_cancel">Bye</string>
     <string name="first_run_alert_continue">Continue</string>
     <string name="device_admin_label" translatable="false">Shelter</string>

@@ -129,8 +129,12 @@ public class SetupWizardActivity extends AppCompatActivity {
             // Provisioning finished, but we still need to tell the user
             // to click on the notification to bring up Shelter inside the
             // profile. Otherwise, the setup will not be complete
+
+            //@yingshaoxo
             mStorage.setBoolean(LocalStorageManager.PREF_IS_SETTING_UP, true);
             switchToFragment(new ActionRequiredFragment(), false);
+
+            finishWithResult(true);
         } else {
             switchToFragment(new FailedFragment(), false);
         }

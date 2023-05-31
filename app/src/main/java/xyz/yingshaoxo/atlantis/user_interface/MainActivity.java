@@ -4,6 +4,9 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
@@ -199,6 +202,16 @@ public class MainActivity extends AppCompatActivity {
         startService(intent);
     }
 
+    public static int rgb_color_to_int(int r, int g, int b) {
+        int result = 0;
+        result += r;
+        result = result << 8;
+        result += g;
+        result = result << 8;
+        result += b;
+        return result;
+    }
+
     private void buildView() {
         // Finally we can build the view
         // Find all the views
@@ -233,6 +246,11 @@ public class MainActivity extends AppCompatActivity {
                         R.id.bottom_navigation_work
                 };
                 nav.setSelectedItemId(menuIds[position]);
+
+                //findViewById(menuIds[position]).setBackgroundColor(rgb_color_to_int(255, 255, 255));
+                //Drawable icon_ = nav.getMenu().getItem(position).getIcon().mutate();
+                //icon_.setColorFilter(rgb_color_to_int(255, 255, 255), PorterDuff.Mode.SRC_IN);
+
             }
         });
         nav.setOnItemSelectedListener((MenuItem item) -> {
