@@ -7,8 +7,9 @@
     <string name="device_admin_explanation">يحتاج العازل إلى أن يصبح مسؤول الجهاز من أجل تنفيذ مهام العزل الخاصة به.</string>
     <string name="service_title">خدمة العزل</string>
     <string name="service_desc">العازل يعمل الآن …</string>
-    <string name="fragment_profile_main">الرئيسية</string>
-    <string name="fragment_profile_work">العازل</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[مجمد] %s</string>
     <string name="clone_to_work_profile">نسخ إلى العازل (ملف العمل)</string>
     <string name="clone_to_main_profile">نسخ للملف الرئيسي</string>

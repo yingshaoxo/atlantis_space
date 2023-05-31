@@ -2,11 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bottom_navigation_main"
-        android:icon="@drawable/ic_home"
+        android:icon="@drawable/icon_public"
         android:title="@string/fragment_profile_main" />
 
     <item
         android:id="@+id/bottom_navigation_work"
-        android:icon="@drawable/ic_work"
+        android:icon="@drawable/icon_flight"
         android:title="@string/fragment_profile_work" />
+
+    <item
+        android:id="@+id/bottom_navigation_shop"
+        android:icon="@drawable/icon_local_convenience_store"
+        android:title="@string/fragment_profile_shop" />
 </menu>

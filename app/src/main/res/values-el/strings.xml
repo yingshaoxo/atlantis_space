@@ -111,8 +111,9 @@
     <string name="service_auto_freeze_title">Αναμονή αυτόματου παγώματος εφαρμογών</string>
     <string name="service_auto_freeze_now">Πάγωσε τώρα</string>
     <string name="app_installing">Εγκατάσταση...</string>
-    <string name="fragment_profile_main">Κύριο</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Παγωμένο] %s</string>
     <string name="service_auto_freeze_desc">Το Shelter θα παγώσει αυτόματα εφαρμογές που εκκινούνται με την επιλογή \"Ξεπάγωσε και τρέξε\" την επόμενη φορά που θα κλειδώσει η οθόνη της συσκευής.</string>
 </resources>

@@ -25,9 +25,10 @@
     <string name="camera_proxy_activity">Välj en bildfil</string>
     <string name="launch_app_fail">Det går inte att starta appen %s eftersom den har inte något GUI.</string>
     <string name="miui_cannot_clone">Att klona icke-systemappar till en annan profil är för närvarande inte möjligt på MIUI. Vänligen klona ditt systems appbutik (t.ex. <b>Play Butik, FDroid</b>) till den andra profilen och installera sedan appar därifrån.</string>
-    <string name="fragment_profile_main">Primär</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="continue_anyway">Fortsätt ändå</string>
-    <string name="fragment_profile_work">Shelter</string>
     <string name="uninstall_fail_system_app">Det går inte att avinstallera systemappar i en profil som Shelter inte har kontroll över.</string>
     <string name="device_admin_desc">App-isoleringstjänst</string>
     <string name="device_admin_explanation">Shelter behöver bli enhetsadministratör för att kunna utföra sina isoleringsuppgifter.</string>

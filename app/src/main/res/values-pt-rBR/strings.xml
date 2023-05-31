@@ -23,8 +23,9 @@
     <string name="service_auto_freeze_desc">O Shelter automaticamente suspenderá os apps executados via \"Reativar e Iniciar\" no próximo intento de bloqueio da tela.</string>
     <string name="service_auto_freeze_now">Suspender agora</string>
     <string name="app_installing">Instalando...</string>
-    <string name="fragment_profile_main">Principal</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Suspenso] %s</string>
     <string name="batch_operation">Operação em grupo</string>
     <string name="clone_to_work_profile">Clonar ao Shelter (Perfil de trabalho)</string>

@@ -16,8 +16,9 @@
     <string name="clone_to_work_profile">Cloner vers Shelter (Profil Professionnel)</string>
     <string name="uninstall_app">Désinstaller</string>
     <string name="freeze_all_shortcut">Geler</string>
-    <string name="fragment_profile_main">Profil Principal</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="clone_to_main_profile">Cloner vers le Profil Principal</string>
     <string name="freeze_app">Geler</string>
     <string name="unfreeze_app">Dégeler</string>

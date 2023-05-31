@@ -23,8 +23,9 @@
     <string name="service_auto_freeze_desc">Bei der nächsten Bildschirmsperre wird Shelter die Apps automatisch einfrosten, die durch \"Auftauen &amp; Starten\" gestartet wurden.</string>
     <string name="service_auto_freeze_now">Froste jetzt ein</string>
     <string name="app_installing">Wird installiert...</string>
-    <string name="fragment_profile_main">Persönlich</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Eingefrostet] %s</string>
     <string name="batch_operation">Stapelverabeitung</string>
     <string name="clone_to_work_profile">Klone zu Shelter (Arbeits-Profil)</string>

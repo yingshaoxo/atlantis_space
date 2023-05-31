@@ -64,8 +64,9 @@
 \nPara reiniciar Shelter e iniciar de nuevo, puedes limpiar los datos de Shelter en la configuración.</string>
     <string name="service_auto_freeze_now">Suspender ahora</string>
     <string name="app_installing">Instalando...</string>
-    <string name="fragment_profile_main">Principal</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Suspendida]%s</string>
     <string name="batch_operation">Operación en lote</string>
     <string name="clone_to_work_profile">Clonar a Shelter (perfil de trabajo)</string>

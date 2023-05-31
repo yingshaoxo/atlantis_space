@@ -49,8 +49,9 @@
     <string name="service_auto_freeze_desc">Shelter va desactivar les aplicaciones llanzaes dende «Activar y llanzar» la próxima vegada que se bloquie la pantalla.</string>
     <string name="service_auto_freeze_now">Desactivar agora</string>
     <string name="app_installing">Instalando…</string>
-    <string name="fragment_profile_main">Perfil principal</string>
-    <string name="fragment_profile_work">Perfil aisláu</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Desactivóse] %s</string>
     <string name="batch_operation">Operación per llotes</string>
     <string name="clone_to_work_profile">Clonar al perfil aisláu</string>

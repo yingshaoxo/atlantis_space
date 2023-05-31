@@ -36,8 +36,9 @@
     <string name="launch">Çalıştır</string>
     <string name="list_item_disabled">[Dondurulmuş] %s</string>
     <string name="show_all_warning">Gizlenmiş uygulamalar üstünde değişikler yaparsanız çökmeler ve beklenmeyen hatalar meydana gelebilir. Ancak bu özellik, üretici tarafından özelleştirilmiş hatalı ROM\'larda iş profili için gerekli tüm sistem uygulamaları etkinleştirilmediğinde işinize yarayabilir. Devam ettiğiniz takdirde sorumluluk size aittir.</string>
-    <string name="fragment_profile_main">Ana Profil</string>
-    <string name="fragment_profile_work">İş Profili</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="allow_cross_profile_widgets">Ana Profilde Widget\'lara İzin Ver</string>
     <string name="clone_to_work_profile">İş profiline klonla</string>
     <string name="clone_to_main_profile">Ana profile klonla</string>

@@ -16,8 +16,9 @@
     <string name="service_auto_freeze_desc">Shelter 将会在您下次锁屏时自动冻结使用 \"解冻并运行\" 启动的应用。</string>
     <string name="service_auto_freeze_now">立刻冻结</string>
     <!-- Main UI -->
-    <string name="fragment_profile_main">主用户</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[已冻结] %s</string>
     <string name="batch_operation">批量操作</string>
     <!-- App Context Menu -->

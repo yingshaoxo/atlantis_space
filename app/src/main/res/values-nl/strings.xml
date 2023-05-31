@@ -69,8 +69,9 @@
 \nOm Shelter te resetten en opnieuw te beginnen, kun je de gegevens van Shelter wissen in Instellingen.</string>
     <string name="service_auto_freeze_now">Nu bevriezen</string>
     <string name="app_installing">Installeren...</string>
-    <string name="fragment_profile_main">Hoofd</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Bevroren] %s</string>
     <string name="batch_operation">Batchbewerking</string>
     <string name="clone_to_work_profile">Kloon naar Shelter (Werkprofiel)</string>

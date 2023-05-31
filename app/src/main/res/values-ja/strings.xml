@@ -14,8 +14,9 @@
     <string name="service_auto_freeze_now">今すぐ凍結</string>
     <string name="service_auto_freeze_desc">Shelterは、次の画面ロック時に「凍結解除＆起動」から実行したアプリを自動でフリーズさせます。</string>
     <string name="app_installing">インストール中...</string>
-    <string name="fragment_profile_main">メイン</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[凍結中%s]</string>
     <string name="batch_operation">一括処理</string>
     <string name="clone_to_main_profile">標準プロファイルに複製</string>

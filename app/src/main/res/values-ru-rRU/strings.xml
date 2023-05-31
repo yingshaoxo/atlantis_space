@@ -15,8 +15,9 @@
     <string name="device_admin_explanation">Shelter требуется стать администратором устройства, чтобы управлять изоляцией.</string>
     <string name="service_title">Служба Shelter</string>
     <string name="service_desc">Shelter запущен …</string>
-    <string name="fragment_profile_main">Основной</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Заморожено] %s</string>
     <string name="clone_to_work_profile">Клонировать в Shelter</string>
     <string name="clone_to_main_profile">Клонировать в осн. профиль</string>

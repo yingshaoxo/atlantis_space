@@ -230,6 +230,8 @@ public class MainActivity extends AppCompatActivity {
                     return AppListFragment.newInstance(mServiceMain, false);
                 } else if (position == 1) {
                     return AppListFragment.newInstance(mServiceWork, true);
+                } else if (position == 2) {
+                    return AppListFragment.newInstance(mServiceWork, true);
                 } else {
                     throw new RuntimeException("How did this happen?");
                 }
@@ -237,7 +239,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public int getItemCount() {
-                return 2;
+                return 3;
+                //@yingshaoxo
+                //return pager.getChildCount();
             }
         });
         pager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -245,7 +249,8 @@ public class MainActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 int[] menuIds = new int[]{
                         R.id.bottom_navigation_main,
-                        R.id.bottom_navigation_work
+                        R.id.bottom_navigation_work,
+                        R.id.bottom_navigation_shop
                 };
                 nav.setSelectedItemId(menuIds[position]);
 
@@ -261,9 +266,14 @@ public class MainActivity extends AppCompatActivity {
                 pager.setCurrentItem(0);
             } else if (itemId == R.id.bottom_navigation_work) {
                 pager.setCurrentItem(1);
+            } else if (itemId == R.id.bottom_navigation_shop) {
+                pager.setCurrentItem(2);
             }
             return true;
         });
+
+        // default to inside page
+        pager.setCurrentItem(1, false);
     }
 
     // Get the service on the other side

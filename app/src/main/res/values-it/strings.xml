@@ -14,8 +14,9 @@
     <string name="settings_bug_report">Segnalazione di errori / Tracciatore dei problemi</string>
     <string name="service_auto_freeze_now">Congela adesso</string>
     <string name="app_installing">Installazione...</string>
-    <string name="fragment_profile_main">Pagina principale</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="clone_to_work_profile">Clona in Shelter (Profilo di Lavoro)</string>
     <string name="clone_to_main_profile">Clona nel Profilo principale</string>
     <string name="uninstall_app">Disinstalla</string>

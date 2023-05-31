@@ -35,8 +35,9 @@
     <string name="service_auto_freeze_title">Đang chờ tự động đóng băng</string>
     <string name="service_auto_freeze_now">Đóng băng ngay</string>
     <string name="app_installing">Đang cài đặt…</string>
-    <string name="fragment_profile_main">Chính</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Đã đóng băng] %s</string>
     <string name="batch_operation">Hoạt động hàng loạt</string>
     <string name="clone_to_work_profile">Nhân bản vào Shelter (Hồ sơ công việc)</string>

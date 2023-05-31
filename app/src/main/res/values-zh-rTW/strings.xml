@@ -60,10 +60,11 @@
     <string name="service_auto_freeze_title">自動凍結等待中</string>
     <string name="service_auto_freeze_now">立刻凍結</string>
     <string name="app_installing">正在安裝……</string>
-    <string name="fragment_profile_main">主用戶</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[已凍結] %s</string>
     <string name="service_auto_freeze_desc">Shelter 將會在您下次鎖屏時自動凍結使用 \"解凍並運行\" 啓動的應用。</string>
-    <string name="fragment_profile_work">Shelter</string>
     <string name="notifications_important">Shelter 重要通知</string>
     <string name="clone_to_main_profile">克隆到主用戶</string>
     <string name="uninstall_app">卸載</string>

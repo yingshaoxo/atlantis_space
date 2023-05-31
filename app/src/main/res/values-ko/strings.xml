@@ -15,8 +15,9 @@
     <string name="service_auto_freeze_title">자동 비활성화 대기 중</string>
     <string name="app_installing">설치 중...</string>
     <string name="service_auto_freeze_now">지금 비활성화 시작하기</string>
-    <string name="fragment_profile_main">개인</string>
-    <string name="fragment_profile_work">직장</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="uninstall_app">제거하기</string>
     <string name="batch_operation">일괄 작업</string>
     <string name="clone_to_work_profile">직장 프로필로 복제하기</string>

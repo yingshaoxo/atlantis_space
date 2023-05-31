@@ -37,8 +37,9 @@
     <string name="service_auto_freeze_desc">Shelter יקפיא אוטומטית אפליקציות שהושקו מ-\"Unfreeze &amp; Launch\" באירוע נעילת המסך הבא.</string>
     <string name="service_auto_freeze_now">להקפיא עכשיו</string>
     <string name="app_installing">מתקין...</string>
-    <string name="fragment_profile_main">ראשי</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[מוקפא] %s</string>
     <string name="batch_operation">תפעול אצווה</string>
     <string name="clone_to_work_profile">שיכפול ל-Shelter (פרופיל עבודה)</string>

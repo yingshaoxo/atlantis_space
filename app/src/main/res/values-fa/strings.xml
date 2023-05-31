@@ -70,8 +70,9 @@
     <string name="service_auto_freeze_title">منتظر قفل خودکار هستیم</string>
     <string name="service_auto_freeze_now">قفل کن</string>
     <string name="app_installing">در حال نصب...</string>
-    <string name="fragment_profile_main">اصلی</string>
-    <string name="fragment_profile_work">شلتر</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">%s قفل شده</string>
     <string name="batch_operation">عملیات جمعی</string>
     <string name="clone_to_work_profile">کپی به شلتر (Work Profile)</string>

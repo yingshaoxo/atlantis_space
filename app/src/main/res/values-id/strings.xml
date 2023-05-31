@@ -46,8 +46,9 @@
     <string name="service_auto_freeze_desc">Shelter akan membekukan aplikasi secara otomatis yang diluncurkan dari \"Cairan &amp; Luncurkan\" pada acara penguncian layar berikutnya.</string>
     <string name="service_auto_freeze_now">Bekukan Sekarang</string>
     <string name="app_installing">Memasang...</string>
-    <string name="fragment_profile_main">Utama</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Bekukan] %s</string>
     <string name="batch_operation">Kelompok operasi</string>
     <string name="clone_to_work_profile">Salin ke Shelter (Profil Kerja)</string>

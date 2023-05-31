@@ -13,8 +13,9 @@
     <string name="service_auto_freeze_desc">Shelter automatycznie zamrozi aplikacje uruchomione przez \"Odmróź i uruchom\" na następnym zablokowaniu ekranu.</string>
     <string name="service_auto_freeze_now">Zamróź teraz</string>
     <string name="app_installing">Instalowanie...</string>
-    <string name="fragment_profile_main">Główny</string>
-    <string name="fragment_profile_work">Shelter</string>
+    <string name="fragment_profile_main">Outside</string>
+    <string name="fragment_profile_work">Inside</string>
+    <string name="fragment_profile_shop">Treasure</string>
     <string name="list_item_disabled">[Zamrożone] %s</string>
     <string name="first_run_alert">Zamierzasz skonfigurować Shelter.
 \n
