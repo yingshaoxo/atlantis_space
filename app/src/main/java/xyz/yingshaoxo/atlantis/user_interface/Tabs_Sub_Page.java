@@ -6,6 +6,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -34,6 +36,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import xyz.yingshaoxo.atlantis.R;
 import xyz.yingshaoxo.atlantis.services.IAppInstallCallback;
 import xyz.yingshaoxo.atlantis.services.IGetAppsCallback;
@@ -44,12 +52,7 @@ import xyz.yingshaoxo.atlantis.utilities.ApplicationInfoWrapper;
 import xyz.yingshaoxo.atlantis.utilities.LocalStorageManager;
 import xyz.yingshaoxo.atlantis.utilities.Utility;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-public class AppListFragment extends BaseFragment {
+public class Tabs_Sub_Page extends BaseFragment {
     static final String BROADCAST_REFRESH = "xyz.yingshaoxo.atlantis.broadcast.REFRESH";
 
     // Menu Items
@@ -110,8 +113,10 @@ public class AppListFragment extends BaseFragment {
         }
     };
 
-    static AppListFragment newInstance(IShelterService service, boolean isRemote) {
-        AppListFragment fragment = new AppListFragment();
+    private PackageManager mPackageManager = null;
+
+    static Tabs_Sub_Page newInstance(IShelterService service, boolean isRemote) {
+        Tabs_Sub_Page fragment = new Tabs_Sub_Page();
         Bundle args = new Bundle();
         args.putBinder("service", service.asBinder());
         args.putBoolean("is_remote", isRemote);
@@ -159,6 +164,8 @@ public class AppListFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
+        mPackageManager = getContext().getPackageManager();
+
         // Save the views
         mList = view.findViewById(R.id.fragment_list_recycler_view);
         mSwipeRefresh = view.findViewById(R.id.fragment_swipe_refresh);
@@ -198,36 +205,48 @@ public class AppListFragment extends BaseFragment {
         mRefreshing = true;
         mSwipeRefresh.setRefreshing(true);
 
-        try {
-            mService.getApps(new IGetAppsCallback.Stub() {
-                @Override
-                public void callback(List<ApplicationInfoWrapper> apps) {
-                    if (mIsRemote) {
-                        mCrossProfileWidgetProviders.clear();
+        List<ApplicationInfoWrapper> a_list = new ArrayList<ApplicationInfoWrapper>();;
+        ApplicationInfo a_app =  new ApplicationInfo();
+        a_app.name = "yingshaoxo";
+        a_app.packageName = "xyz.yingshaoxo.god";
+        ApplicationInfoWrapper a_app_wrapper = new ApplicationInfoWrapper(a_app);
+        a_app_wrapper.loadLabel(mPackageManager);
+        a_list.add(a_app_wrapper);
+        mAdapter.setData(a_list);
 
-                        // Update the cross-profile widget provider list
-                        try {
-                            mCrossProfileWidgetProviders.addAll(mService.getCrossProfileWidgetProviders());
-                        } catch (RemoteException e) {
+        mSwipeRefresh.setRefreshing(false);
+        mRefreshing = false;
 
-                        }
-                    }
-
-                    if (mIsRemote) {
-                        Utility.deleteMissingApps(
-                                LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE,
-                                apps);
-                    }
-                    runOnUiThread(() -> {
-                        mSwipeRefresh.setRefreshing(false);
-                        mAdapter.setData(apps);
-                        mRefreshing = false;
-                    });
-                }
-            }, ((MainActivity) getActivity()).mShowAll);
-        } catch (RemoteException e) {
-            // Just... do nothing for now
-        }
+//        try {
+//            mService.getApps(new IGetAppsCallback.Stub() {
+//                @Override
+//                public void callback(List<ApplicationInfoWrapper> apps) {
+//                    if (mIsRemote) {
+//                        mCrossProfileWidgetProviders.clear();
+//
+//                        // Update the cross-profile widget provider list
+//                        try {
+//                            mCrossProfileWidgetProviders.addAll(mService.getCrossProfileWidgetProviders());
+//                        } catch (RemoteException e) {
+//
+//                        }
+//                    }
+//
+//                    if (mIsRemote) {
+//                        Utility.deleteMissingApps(
+//                                LocalStorageManager.PREF_AUTO_FREEZE_LIST_WORK_PROFILE,
+//                                apps);
+//                    }
+//                    runOnUiThread(() -> {
+//                        mSwipeRefresh.setRefreshing(false);
+//                        mAdapter.setData(apps);
+//                        mRefreshing = false;
+//                    });
+//                }
+//            }, ((MainActivity) getActivity()).mShowAll);
+//        } catch (RemoteException e) {
+//            // Just... do nothing for now
+//        }
     }
 
     // Enter multi-select mode for work profile
@@ -330,9 +349,9 @@ public class AppListFragment extends BaseFragment {
             if (mSelectedApp.getLabel() != null) {
                 SpannableString spannableString = new SpannableString(mSelectedApp.getLabel());
                 spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#D1BA88")), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+                menu.setHeaderTitle(spannableString);
                 //menu.setHeaderTitle(
                 //        getString(R.string.app_context_menu_title, mSelectedApp.getLabel()));
-                menu.setHeaderTitle(spannableString);
             }
         }
 

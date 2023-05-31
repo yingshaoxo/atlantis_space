@@ -231,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (position == 1) {
                     return AppListFragment.newInstance(mServiceWork, true);
                 } else if (position == 2) {
-                    return AppListFragment.newInstance(mServiceWork, true);
+                    return Tabs_Sub_Page.newInstance(mServiceWork, true);
                 } else {
                     throw new RuntimeException("How did this happen?");
                 }
