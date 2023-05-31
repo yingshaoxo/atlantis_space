@@ -333,6 +333,11 @@ public class AppListFragment extends BaseFragment {
             //        getString(R.string.app_context_menu_title, mSelectedApp.getLabel()));
             menu.setHeaderTitle(spannableString);
         }
+
+        int the_size = menu.size();
+        for (int i = 0; i < the_size; i++) {
+            menu.getItem(i).setTitle("   " + menu.getItem(i).getTitle());
+        }
     }
 
     @Override
