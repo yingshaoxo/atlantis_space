@@ -7,11 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -272,6 +276,10 @@ public class AppListFragment extends BaseFragment {
         return true;
     }
 
+    private String each_app_menu_string_pre_process(String text) {
+        return "  " + text;
+    }
+
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -319,8 +327,11 @@ public class AppListFragment extends BaseFragment {
             // Only set title when the menu is not empty
             // this ensures that no menu will be shown
             // if no operation available
-            menu.setHeaderTitle(
-                    getString(R.string.app_context_menu_title, mSelectedApp.getLabel()));
+            SpannableString spannableString = new SpannableString(mSelectedApp.getLabel());
+            spannableString.setSpan(new ForegroundColorSpan(Color.parseColor("#D1BA88")), 0, spannableString.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+            //menu.setHeaderTitle(
+            //        getString(R.string.app_context_menu_title, mSelectedApp.getLabel()));
+            menu.setHeaderTitle(spannableString);
         }
     }
 
