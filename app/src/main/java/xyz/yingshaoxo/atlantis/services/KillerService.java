@@ -16,14 +16,14 @@ import xyz.yingshaoxo.atlantis.utilities.Utility;
 // when the app is closed by any means, we have to ensure
 // its being killed in every possible circumstance.
 public class KillerService extends Service {
-    private IShelterService mServiceMain = null;
-    private IShelterService mServiceWork = null;
+    private IAtlantisService mServiceMain = null;
+    private IAtlantisService mServiceWork = null;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Bundle extras = intent.getBundleExtra("extra");
-        mServiceMain = IShelterService.Stub.asInterface(extras.getBinder("main"));
-        mServiceWork = IShelterService.Stub.asInterface(extras.getBinder("work"));
+        mServiceMain = IAtlantisService.Stub.asInterface(extras.getBinder("main"));
+        mServiceWork = IAtlantisService.Stub.asInterface(extras.getBinder("work"));
         return START_REDELIVER_INTENT;
     }
 
@@ -54,7 +54,7 @@ public class KillerService extends Service {
     }
 
     private void killEverything() {
-        Utility.killShelterServices(mServiceMain, mServiceWork);
+        Utility.killAtlantisServices(mServiceMain, mServiceWork);
         // Kill this service itself
         stopSelf();
     }

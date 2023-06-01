@@ -22,8 +22,8 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import xyz.yingshaoxo.atlantis.R;
-import xyz.yingshaoxo.atlantis.ShelterApplication;
-import xyz.yingshaoxo.atlantis.receivers.ShelterDeviceAdminReceiver;
+import xyz.yingshaoxo.atlantis.AtlantisApplication;
+import xyz.yingshaoxo.atlantis.receivers.AtlantisDeviceAdminReceiver;
 import xyz.yingshaoxo.atlantis.services.FreezeService;
 import xyz.yingshaoxo.atlantis.services.IAppInstallCallback;
 import xyz.yingshaoxo.atlantis.services.IFileShuttleService;
@@ -282,7 +282,7 @@ public class DummyActivity extends Activity {
     private void actionStartService() {
         // This needs to be foreground because this activity won't be able to hold
         // the ServiceConnection to it.
-        ((ShelterApplication) getApplication()).bindShelterService(new ServiceConnection() {
+        ((AtlantisApplication) getApplication()).bindAtlantisService(new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 Intent data = new Intent();
@@ -497,7 +497,7 @@ public class DummyActivity extends Activity {
             for (int i = 0; i < packages.length; i++) {
                 // Unfreeze everything
                 mPolicyManager.setApplicationHidden(
-                        new ComponentName(this, ShelterDeviceAdminReceiver.class),
+                        new ComponentName(this, AtlantisDeviceAdminReceiver.class),
                         packages[i], false);
                 // Register freeze service
                 if (packagesShouldFreeze[i]) {
@@ -511,7 +511,7 @@ public class DummyActivity extends Activity {
 
         // Unfreeze the app first
         mPolicyManager.setApplicationHidden(
-                new ComponentName(this, ShelterDeviceAdminReceiver.class),
+                new ComponentName(this, AtlantisDeviceAdminReceiver.class),
                 packageName, false);
 
         // Query the start intent
@@ -557,7 +557,7 @@ public class DummyActivity extends Activity {
             String[] list = getIntent().getStringArrayExtra("list");
             for (String pkg : list) {
                 mPolicyManager.setApplicationHidden(
-                        new ComponentName(this, ShelterDeviceAdminReceiver.class),
+                        new ComponentName(this, AtlantisDeviceAdminReceiver.class),
                         pkg, true);
             }
             stopService(new Intent(this, FreezeService.class)); // Stop the auto-freeze service
@@ -588,7 +588,7 @@ public class DummyActivity extends Activity {
     }
 
     private void doStartFileShuttle() {
-        ((ShelterApplication) getApplication()).bindFileShuttleService(new ServiceConnection() {
+        ((AtlantisApplication) getApplication()).bindFileShuttleService(new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 IFileShuttleService shuttle = IFileShuttleService.Stub.asInterface(service);

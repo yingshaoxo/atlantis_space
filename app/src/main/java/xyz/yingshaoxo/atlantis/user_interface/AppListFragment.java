@@ -38,8 +38,8 @@ import xyz.yingshaoxo.atlantis.R;
 import xyz.yingshaoxo.atlantis.services.IAppInstallCallback;
 import xyz.yingshaoxo.atlantis.services.IGetAppsCallback;
 import xyz.yingshaoxo.atlantis.services.ILoadIconCallback;
-import xyz.yingshaoxo.atlantis.services.IShelterService;
-import xyz.yingshaoxo.atlantis.services.ShelterService;
+import xyz.yingshaoxo.atlantis.services.IAtlantisService;
+import xyz.yingshaoxo.atlantis.services.AtlantisService;
 import xyz.yingshaoxo.atlantis.utilities.ApplicationInfoWrapper;
 import xyz.yingshaoxo.atlantis.utilities.LocalStorageManager;
 import xyz.yingshaoxo.atlantis.utilities.Utility;
@@ -62,7 +62,7 @@ public class AppListFragment extends BaseFragment {
     private static final int MENU_ITEM_AUTO_FREEZE = 10007;
     private static final int MENU_ITEM_ALLOW_CROSS_PROFILE_WIDGET = 10008;
 
-    private IShelterService mService = null;
+    private IAtlantisService mService = null;
     private boolean mIsRemote = false;
     private boolean mRefreshing = false;
     private Drawable mDefaultIcon = null;
@@ -110,7 +110,7 @@ public class AppListFragment extends BaseFragment {
         }
     };
 
-    static AppListFragment newInstance(IShelterService service, boolean isRemote) {
+    static AppListFragment newInstance(IAtlantisService service, boolean isRemote) {
         AppListFragment fragment = new AppListFragment();
         Bundle args = new Bundle();
         args.putBinder("service", service.asBinder());
@@ -124,7 +124,7 @@ public class AppListFragment extends BaseFragment {
         super.onCreate(savedInstanceState);
         mDefaultIcon = getActivity().getPackageManager().getDefaultActivityIcon();
         IBinder service = getArguments().getBinder("service");
-        mService = IShelterService.Stub.asInterface(service);
+        mService = IAtlantisService.Stub.asInterface(service);
         mIsRemote = getArguments().getBoolean("is_remote");
     }
 
@@ -304,7 +304,7 @@ public class AppListFragment extends BaseFragment {
             crossProfileWdiegt.setChecked(
                     mCrossProfileWidgetProviders.contains(mSelectedApp.getPackageName()));
 
-            // TODO: If we implement God Mode (i.e. Shelter as device owner), we should
+            // TODO: If we implement God Mode (i.e. Atlantis as device owner), we should
             // TODO: use two different lists to store auto freeze apps because we'll be
             // TODO: able to freeze apps in main profile.
             MenuItem autoFreeze = menu.add(Menu.NONE, MENU_ITEM_AUTO_FREEZE, Menu.NONE, R.string.auto_freeze);
@@ -462,7 +462,7 @@ public class AppListFragment extends BaseFragment {
             Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
             LocalBroadcastManager.getInstance(getContext())
                     .sendBroadcast(new Intent(BROADCAST_REFRESH));
-        } else if (result == ShelterService.RESULT_CANNOT_INSTALL_SYSTEM_APP) {
+        } else if (result == AtlantisService.RESULT_CANNOT_INSTALL_SYSTEM_APP) {
             Toast.makeText(getContext(),
                     getString(isInstall ? R.string.clone_fail_system_app :
                             R.string.uninstall_fail_system_app), Toast.LENGTH_SHORT).show();
@@ -484,7 +484,7 @@ public class AppListFragment extends BaseFragment {
     }
 
     void addUnfreezeShortcut(ApplicationInfoWrapper app, List<ApplicationInfoWrapper> linkedApps, Bitmap icon) {
-        String id = "shelter-" + app.getPackageName();
+        String id = "atlantis-" + app.getPackageName();
         // First, create an Intent to be sent when clicking on the shortcut
         Intent launchIntent = new Intent(DummyActivity.PUBLIC_UNFREEZE_AND_LAUNCH);
         launchIntent.setComponent(new ComponentName(getContext(), DummyActivity.class));

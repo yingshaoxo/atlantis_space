@@ -35,9 +35,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import xyz.yingshaoxo.atlantis.R;
-import xyz.yingshaoxo.atlantis.ShelterApplication;
+import xyz.yingshaoxo.atlantis.AtlantisApplication;
 import xyz.yingshaoxo.atlantis.services.IAppInstallCallback;
-import xyz.yingshaoxo.atlantis.services.IShelterService;
+import xyz.yingshaoxo.atlantis.services.IAtlantisService;
 import xyz.yingshaoxo.atlantis.services.IStartActivityProxy;
 import xyz.yingshaoxo.atlantis.services.KillerService;
 import xyz.yingshaoxo.atlantis.utilities.LocalStorageManager;
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean mRestarting = false;
 
     // Two services running in main / work profile
-    private IShelterService mServiceMain = null;
-    private IShelterService mServiceWork = null;
+    private IAtlantisService mServiceMain = null;
+    private IAtlantisService mServiceWork = null;
 
     // Show all applications or not
     // default to false
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         if (mStorage.getBoolean(LocalStorageManager.PREF_IS_SETTING_UP) && !Utility.isWorkProfileAvailable(this)) {
-            // System has already finished provisioning, but Shelter still
+            // System has already finished provisioning, but Atlantis still
             // needs to be brought up inside the work profile
             mResumeSetup.launch(null);
         } else if (!mStorage.getBoolean(LocalStorageManager.PREF_HAS_SETUP)) {
@@ -122,10 +122,10 @@ public class MainActivity extends AppCompatActivity {
         // Bind to the service provided by this app in main user
         // The service in main profile doesn't need to be foreground
         // because this activity will hold a ServiceConnection to the service
-        ((ShelterApplication) getApplication()).bindShelterService(new ServiceConnection() {
+        ((AtlantisApplication) getApplication()).bindAtlantisService(new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
-                mServiceMain = IShelterService.Stub.asInterface(service);
+                mServiceMain = IAtlantisService.Stub.asInterface(service);
                 tryStartWorkService();
             }
 
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindWorkService() {
-        // Bind to the ShelterService in work profile
+        // Bind to the AtlantisService in work profile
         Intent intent = new Intent(DummyActivity.START_SERVICE);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         Utility.transferIntentToProfile(this, intent);
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         if (result.getResultCode() == RESULT_OK && result.getData() != null) {
             Bundle extra = result.getData().getBundleExtra("extra");
             IBinder binder = extra.getBinder("service");
-            mServiceWork = IShelterService.Stub.asInterface(binder);
+            mServiceWork = IAtlantisService.Stub.asInterface(binder);
             registerStartActivityProxies();
             startKiller();
             buildView();
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startKiller() {
-        // Start the sticky KillerService to kill the ShelterService
+        // Start the sticky KillerService to kill the AtlantisService
         // for us when we are removed from tasks
         // This is a dirty hack because no lifecycle events will be
         // called when task is removed from recents
@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
     // Get the service on the other side
     // remote (work) -> main
     // main -> remote (work)
-    IShelterService getOtherService(boolean isRemote) {
+    IAtlantisService getOtherService(boolean isRemote) {
         return isRemote ? mServiceMain : mServiceWork;
     }
 
@@ -368,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
         // to avoid double-free
         stopService(new Intent(this, KillerService.class));
 
-        Utility.killShelterServices(mServiceMain, mServiceWork);
+        Utility.killAtlantisServices(mServiceMain, mServiceWork);
     }
 
     @Override
@@ -446,7 +446,7 @@ public class MainActivity extends AppCompatActivity {
             launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             Utility.createLauncherShortcut(this, launchIntent,
                     Icon.createWithResource(this, R.mipmap.ic_freeze),
-                    "shelter-freeze-all", getString(R.string.freeze_all_shortcut));
+                    "atlantis-freeze-all", getString(R.string.freeze_all_shortcut));
             return true;
         } else if (itemId == R.id.main_menu_install_app_to_profile) {
             mSelectApk.launch(null);

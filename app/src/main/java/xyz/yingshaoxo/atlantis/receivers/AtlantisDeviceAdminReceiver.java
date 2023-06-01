@@ -12,7 +12,7 @@ import xyz.yingshaoxo.atlantis.R;
 import xyz.yingshaoxo.atlantis.user_interface.DummyActivity;
 import xyz.yingshaoxo.atlantis.utilities.Utility;
 
-public class ShelterDeviceAdminReceiver extends DeviceAdminReceiver {
+public class AtlantisDeviceAdminReceiver extends DeviceAdminReceiver {
     private static final int NOTIFICATION_ID = 114514;
 
     @Override
@@ -31,7 +31,7 @@ public class ShelterDeviceAdminReceiver extends DeviceAdminReceiver {
         // Delegate starting activity to notification to work around background limitations
         // And also maybe this will fix bugs on stupid custom OSes like MIUI / EMUI
         Notification notification = Utility.buildNotification(context, true,
-                "shelter-finish-provision",
+                "atlantis-finish-provision",
                 context.getString(R.string.finish_provision_title),
                 context.getString(R.string.finish_provision_desc),
                 R.drawable.ic_notification_white_24dp);

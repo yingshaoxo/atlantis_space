@@ -16,7 +16,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import xyz.yingshaoxo.atlantis.R;
-import xyz.yingshaoxo.atlantis.services.IShelterService;
+import xyz.yingshaoxo.atlantis.services.IAtlantisService;
 import xyz.yingshaoxo.atlantis.utilities.SettingsManager;
 import xyz.yingshaoxo.atlantis.utilities.Utility;
 
@@ -38,7 +38,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     private static final String SETTINGS_SKIP_FOREGROUND = "settings_dont_freeze_foreground";
 
     private SettingsManager mManager = SettingsManager.getInstance();
-    private IShelterService mServiceWork = null;
+    private IAtlantisService mServiceWork = null;
 
     private CheckBoxPreference mPrefCrossProfileFileChooser = null;
     private CheckBoxPreference mPrefCameraProxy = null;
@@ -51,7 +51,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.preferences_settings);
-        mServiceWork = IShelterService.Stub.asInterface(
+        mServiceWork = IAtlantisService.Stub.asInterface(
                 ((Bundle) getActivity().getIntent().getParcelableExtra("extras")).getBinder("profile_service"));
 
         // Set the displayed version

@@ -31,7 +31,7 @@ import java.util.Map;
 // This is an interface to FileShuttleService
 public class CrossProfileDocumentsProvider extends DocumentsProvider {
     // The dummy root path that will be replaced by the real path to external storage on the other side
-    public static final String DUMMY_ROOT = "/shelter_storage_root/";
+    public static final String DUMMY_ROOT = "/atlantis_storage_root/";
     private static final String AUTHORITY = "xyz.yingshaoxo.atlantis.documents";
     private static final String[] DEFAULT_ROOT_PROJECTION = new String[] {
             DocumentsContract.Root.COLUMN_ROOT_ID,

@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import xyz.yingshaoxo.atlantis.R;
 import xyz.yingshaoxo.atlantis.services.ILoadIconCallback;
-import xyz.yingshaoxo.atlantis.services.IShelterService;
+import xyz.yingshaoxo.atlantis.services.IAtlantisService;
 import xyz.yingshaoxo.atlantis.utilities.ApplicationInfoWrapper;
 
 import java.util.ArrayList;
@@ -225,7 +225,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
     // (after filtering by search query if applicable)
     private List<ApplicationInfoWrapper> mList = new ArrayList<>();
     private String mSearchQuery = null;
-    private IShelterService mService;
+    private IAtlantisService mService;
     private Drawable mDefaultIcon;
     private String mLabelDisabled;
     private Map<String, Bitmap> mIconCache = new HashMap<>();
@@ -239,7 +239,7 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
     private boolean mMultiSelectMode = false;
     private List<Integer> mSelectedIndices = new ArrayList<>();
 
-    AppListAdapter(IShelterService service, Drawable defaultIcon) {
+    AppListAdapter(IAtlantisService service, Drawable defaultIcon) {
         mService = service;
         mDefaultIcon = defaultIcon;
     }

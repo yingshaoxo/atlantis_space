@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 // This activity forwards ACTION_CAPTURE_IMAGE to ACTION_OPEN_DOCUMENT with image files
-// which allows users to use Documents UI, and of course, Shelter's File Shuttle
+// which allows users to use Documents UI, and of course, Atlantis's File Shuttle
 // to pick images within apps that do not support ACTION_OPEN_DOCUMENT directly
 // This will make cross-profile picture sharing a ton more easier.
 // But here is the catch: sending images through this method will re-compress

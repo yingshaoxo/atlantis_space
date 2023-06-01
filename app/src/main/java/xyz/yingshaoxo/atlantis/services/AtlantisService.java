@@ -17,8 +17,8 @@ import android.os.RemoteException;
 import androidx.annotation.Nullable;
 
 import xyz.yingshaoxo.atlantis.R;
-import xyz.yingshaoxo.atlantis.ShelterApplication;
-import xyz.yingshaoxo.atlantis.receivers.ShelterDeviceAdminReceiver;
+import xyz.yingshaoxo.atlantis.AtlantisApplication;
+import xyz.yingshaoxo.atlantis.receivers.AtlantisDeviceAdminReceiver;
 import xyz.yingshaoxo.atlantis.user_interface.DummyActivity;
 import xyz.yingshaoxo.atlantis.utilities.ApplicationInfoWrapper;
 import xyz.yingshaoxo.atlantis.utilities.FileProviderProxy;
@@ -28,7 +28,7 @@ import xyz.yingshaoxo.atlantis.utilities.Utility;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ShelterService extends Service {
+public class AtlantisService extends Service {
     public static final int RESULT_CANNOT_INSTALL_SYSTEM_APP = 100001;
 
     private static final int NOTIFICATION_ID = 0x49a11;
@@ -46,14 +46,14 @@ public class ShelterService extends Service {
     // Note that this proxy can only start activity that is accessible to the
     // main profile and within the application itself.
     private IStartActivityProxy mStartActivityProxy = null;
-    private IShelterService.Stub mBinder = new IShelterService.Stub() {
+    private IAtlantisService.Stub mBinder = new IAtlantisService.Stub() {
         @Override
         public void ping() {
             // Do nothing, just let the other side know we are alive
         }
 
         @Override
-        public void stopShelterService(boolean kill) {
+        public void stopAtlantisService(boolean kill) {
             // dirty: just wait for some time and kill this service itself
             new Thread(() -> {
                 try {
@@ -62,7 +62,7 @@ public class ShelterService extends Service {
 
                 }
 
-                ((ShelterApplication) getApplication()).unbindShelterService();
+                ((AtlantisApplication) getApplication()).unbindAtlantisService();
 
                 if (kill && !(mIsProfileOwner && FreezeService.hasPendingAppToFreeze())) {
                     // Just kill the entire process if this signal is received and the process has nothing to do
@@ -129,7 +129,7 @@ public class ShelterService extends Service {
                 // Delegate this operation to DummyActivity because
                 // Only it can receive a result
                 Intent intent = new Intent(DummyActivity.INSTALL_PACKAGE);
-                intent.setComponent(new ComponentName(ShelterService.this, DummyActivity.class));
+                intent.setComponent(new ComponentName(AtlantisService.this, DummyActivity.class));
                 intent.putExtra("package", app.getPackageName());
                 intent.putExtra("apk", app.getSourceDir());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -167,7 +167,7 @@ public class ShelterService extends Service {
             // Directly install an APK through a given Fd
             // instead of installing an existing one
             Intent intent = new Intent(DummyActivity.INSTALL_PACKAGE);
-            intent.setComponent(new ComponentName(ShelterService.this, DummyActivity.class));
+            intent.setComponent(new ComponentName(AtlantisService.this, DummyActivity.class));
             // Generate a content Uri pointing to the Fd
             // DummyActivity is expected to release the Fd after finishing
             Uri uri = FileProviderProxy.setUriForwardProxy(uriForwarder, "apk");
@@ -189,7 +189,7 @@ public class ShelterService extends Service {
             if (!app.isSystem()) {
                 // Similarly, fire up DummyActivity to do uninstallation for us
                 Intent intent = new Intent(DummyActivity.UNINSTALL_PACKAGE);
-                intent.setComponent(new ComponentName(ShelterService.this, DummyActivity.class));
+                intent.setComponent(new ComponentName(AtlantisService.this, DummyActivity.class));
                 intent.putExtra("package", app.getPackageName());
 
                 // Send the callback to the DummyActivity
@@ -237,12 +237,12 @@ public class ShelterService extends Service {
 
         @Override
         public boolean hasUsageStatsPermission() {
-            return Utility.checkUsageStatsPermission(ShelterService.this);
+            return Utility.checkUsageStatsPermission(AtlantisService.this);
         }
 
         @Override
         public boolean hasSystemAlertPermission() {
-            return Utility.checkSystemAlertPermission(ShelterService.this);
+            return Utility.checkSystemAlertPermission(AtlantisService.this);
         }
 
         @Override
@@ -279,7 +279,7 @@ public class ShelterService extends Service {
         mPolicyManager = getSystemService(DevicePolicyManager.class);
         mPackageManager = getPackageManager();
         mIsProfileOwner = mPolicyManager.isProfileOwnerApp(getPackageName());
-        mAdminComponent = new ComponentName(getApplicationContext(), ShelterDeviceAdminReceiver.class);
+        mAdminComponent = new ComponentName(getApplicationContext(), AtlantisDeviceAdminReceiver.class);
     }
 
     @Nullable
@@ -295,7 +295,7 @@ public class ShelterService extends Service {
     public boolean onUnbind(Intent intent) {
         // Stop our foreground notification (if it was created at all) when
         // all clients have disconnected.
-        // This helps to ensure no notification is left when the Shelter activity
+        // This helps to ensure no notification is left when the Atlantis activity
         // is closed.
         stopForeground(true);
         return false;

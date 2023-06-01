@@ -1,4 +1,4 @@
-// IShelterService.aidl
+// IAtlantisService.aidl
 package xyz.yingshaoxo.atlantis.services;
 
 import android.content.pm.ApplicationInfo;
@@ -10,9 +10,9 @@ import xyz.yingshaoxo.atlantis.services.IStartActivityProxy;
 import xyz.yingshaoxo.atlantis.utilities.ApplicationInfoWrapper;
 import xyz.yingshaoxo.atlantis.utilities.UriForwardProxy;
 
-interface IShelterService {
+interface IAtlantisService {
     void ping();
-    void stopShelterService(boolean kill);
+    void stopAtlantisService(boolean kill);
     void getApps(IGetAppsCallback callback, boolean showAll);
     void loadIcon(in ApplicationInfoWrapper info, ILoadIconCallback callback);
     void installApp(in ApplicationInfoWrapper app, IAppInstallCallback callback);

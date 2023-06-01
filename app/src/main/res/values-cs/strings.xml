@@ -4,6 +4,6 @@
     <string name="first_run_alert_cancel">Sbohem</string>
     <string name="first_run_alert_continue">Pokračovat</string>
     <string name="device_admin_desc">Služba izolace aplikací</string>
-    <string name="device_admin_explanation">Shelter musí být správcem zařízení, aby mohl provádět úkoly.</string>
-    <string name="setup_wizard_welcome">Vítejte v Shelteru</string>
+    <string name="device_admin_explanation">Atlantis musí být správcem zařízení, aby mohl provádět úkoly.</string>
+    <string name="setup_wizard_welcome">Vítejte v Atlantisu</string>
 </resources>

@@ -17,11 +17,11 @@ import javax.crypto.spec.SecretKeySpec;
 // That activity runs in the system process, thus normal limitations like "permissions"
 // and "exported" will not work.
 // This class tries to fix it by appending a timestamp and a signature of the timestamp
-// to our own Intents sent through the boundary, ensuring that only Shelter can invoke
+// to our own Intents sent through the boundary, ensuring that only Atlantis can invoke
 // its high-privilege functions across that boundary, assuming that no other application
-// would be able to access Shelter's internal storage to gain access to the private key.
+// would be able to access Atlantis's internal storage to gain access to the private key.
 // The private key is generated the first time this class is used, and then shared
-// across the profile boundary. Shelter will always trust the first key it receives.
+// across the profile boundary. Atlantis will always trust the first key it receives.
 public class AuthenticationUtility {
     public static void signIntent(Intent intent) {
         String key = LocalStorageManager.getInstance().getString(

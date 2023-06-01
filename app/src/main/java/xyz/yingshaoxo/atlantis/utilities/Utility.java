@@ -34,8 +34,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import xyz.yingshaoxo.atlantis.R;
-import xyz.yingshaoxo.atlantis.receivers.ShelterDeviceAdminReceiver;
-import xyz.yingshaoxo.atlantis.services.IShelterService;
+import xyz.yingshaoxo.atlantis.receivers.AtlantisDeviceAdminReceiver;
+import xyz.yingshaoxo.atlantis.services.IAtlantisService;
 import xyz.yingshaoxo.atlantis.user_interface.DummyActivity;
 import xyz.yingshaoxo.atlantis.user_interface.MainActivity;
 
@@ -121,7 +121,7 @@ public class Utility {
     // Enforce policies and configurations in the work profile
     public static void enforceWorkProfilePolicies(Context context) {
         DevicePolicyManager manager = context.getSystemService(DevicePolicyManager.class);
-        ComponentName adminComponent = new ComponentName(context.getApplicationContext(), ShelterDeviceAdminReceiver.class);
+        ComponentName adminComponent = new ComponentName(context.getApplicationContext(), AtlantisDeviceAdminReceiver.class);
 
         // Hide this app in the work profile
         context.getPackageManager().setComponentEnabledSetting(
@@ -177,7 +177,7 @@ public class Utility {
                 new IntentFilter(DummyActivity.SYNCHRONIZE_PREFERENCE),
                 DevicePolicyManager.FLAG_MANAGED_CAN_ACCESS_PARENT);
 
-        // Needed by ShelterService and has to be proxied by the MainActivity in main profile
+        // Needed by AtlantisService and has to be proxied by the MainActivity in main profile
         manager.addCrossProfileIntentFilter(
                 adminComponent,
                 new IntentFilter(DummyActivity.INSTALL_PACKAGE),
@@ -233,7 +233,7 @@ public class Utility {
 
     public static void enforceUserRestrictions(Context context) {
         DevicePolicyManager manager = context.getSystemService(DevicePolicyManager.class);
-        ComponentName adminComponent = new ComponentName(context.getApplicationContext(), ShelterDeviceAdminReceiver.class);
+        ComponentName adminComponent = new ComponentName(context.getApplicationContext(), AtlantisDeviceAdminReceiver.class);
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_APPS);
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_INSTALL_UNKNOWN_SOURCES);
         manager.clearUserRestriction(adminComponent, UserManager.DISALLOW_UNINSTALL_APPS);
@@ -244,8 +244,8 @@ public class Utility {
             manager.setSecureSetting(adminComponent, Settings.Secure.INSTALL_NON_MARKET_APPS, "1");
         }
 
-        // TODO: This should be configured by the user, instead of being enforced each time Shelter starts
-        // TODO: But we should also have some default restrictions that are set the first time Shelter starts
+        // TODO: This should be configured by the user, instead of being enforced each time Atlantis starts
+        // TODO: But we should also have some default restrictions that are set the first time Atlantis starts
         manager.addUserRestriction(adminComponent, UserManager.ALLOW_PARENT_PROFILE_APP_LINKING);
     }
 
@@ -280,16 +280,16 @@ public class Utility {
         return bitmap;
     }
 
-    public static void killShelterServices(IShelterService serviceMain, IShelterService serviceWork) {
+    public static void killAtlantisServices(IAtlantisService serviceMain, IAtlantisService serviceWork) {
         // Ensure that all our other services are killed at this point
         try {
-            serviceWork.stopShelterService(true);
+            serviceWork.stopAtlantisService(true);
         } catch (Exception e) {
             // We are stopping anyway
         }
 
         try {
-            serviceMain.stopShelterService(false);
+            serviceMain.stopAtlantisService(false);
         } catch (Exception e) {
             // We are stopping anyway
         }
@@ -445,8 +445,8 @@ public class Utility {
     }
 
     // Utilities to build notifications for cross-version compatibility
-    private static final String NOTIFICATION_CHANNEL_ID = "ShelterService";
-    private static final String NOTIFICATION_CHANNEL_IMPORTANT = "ShelterService-Important";
+    private static final String NOTIFICATION_CHANNEL_ID = "AtlantisService";
+    private static final String NOTIFICATION_CHANNEL_IMPORTANT = "AtlantisService-Important";
     public static Notification buildNotification(Context context, String ticker, String title, String desc, int icon) {
         return buildNotification(context, false, ticker, title, desc, icon);
     }

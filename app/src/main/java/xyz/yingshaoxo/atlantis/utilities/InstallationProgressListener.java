@@ -2,6 +2,7 @@ package xyz.yingshaoxo.atlantis.utilities;
 
 import android.app.Activity;
 import android.content.pm.PackageInstaller;
+import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -28,12 +29,13 @@ public class InstallationProgressListener extends PackageInstaller.SessionCallba
         mProgress = layout.findViewById(R.id.progress);
 
         //yingshaoxo
-//        mDialog = new AlertDialog.Builder(activity)
-//                .setCancelable(false)
-//                .setTitle(R.string.app_installing)
-//                .setView(layout)
-//                .create();
-//        mDialog.show();
+        mDialog = new AlertDialog.Builder(activity)
+                .setTitle(R.string.app_installing)
+                .setView(layout)
+                .setCancelable(true)
+                .create();
+
+        mDialog.show();
     }
 
     @Override

@@ -18,7 +18,7 @@ import android.webkit.MimeTypeMap;
 
 import androidx.annotation.Nullable;
 
-import xyz.yingshaoxo.atlantis.ShelterApplication;
+import xyz.yingshaoxo.atlantis.AtlantisApplication;
 import xyz.yingshaoxo.atlantis.utilities.CrossProfileDocumentsProvider;
 import xyz.yingshaoxo.atlantis.utilities.Utility;
 
@@ -210,7 +210,7 @@ public class FileShuttleService extends Service {
 
     private void suicide() {
         mHandler.removeCallbacks(mSuicideTask);
-        ((ShelterApplication) getApplication()).unbindFileShuttleService();
+        ((AtlantisApplication) getApplication()).unbindFileShuttleService();
         stopSelf();
     }
 

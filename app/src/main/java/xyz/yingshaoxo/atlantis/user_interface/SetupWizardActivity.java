@@ -23,14 +23,14 @@ import com.android.setupwizardlib.SetupWizardLayout;
 import com.android.setupwizardlib.view.NavigationBar;
 
 import xyz.yingshaoxo.atlantis.R;
-import xyz.yingshaoxo.atlantis.receivers.ShelterDeviceAdminReceiver;
+import xyz.yingshaoxo.atlantis.receivers.AtlantisDeviceAdminReceiver;
 import xyz.yingshaoxo.atlantis.utilities.AuthenticationUtility;
 import xyz.yingshaoxo.atlantis.utilities.LocalStorageManager;
 import xyz.yingshaoxo.atlantis.utilities.Utility;
 
 public class SetupWizardActivity extends AppCompatActivity {
     // RESUME_SETUP should be used when MainActivity detects the provisioning has been
-    // finished by the system, but the Shelter inside the profile has never been brought up
+    // finished by the system, but the Atlantis inside the profile has never been brought up
     // due to the user having not clicked on the notification yet (on Android 7 or lower).
     // TODO: When we remove support for Android 7, get rid of all of these nonsense :)
     public static final String ACTION_RESUME_SETUP = "xyz.yingshaoxo.atlantis.RESUME_SETUP";
@@ -127,7 +127,7 @@ public class SetupWizardActivity extends AppCompatActivity {
             }
 
             // Provisioning finished, but we still need to tell the user
-            // to click on the notification to bring up Shelter inside the
+            // to click on the notification to bring up Atlantis inside the
             // profile. Otherwise, the setup will not be complete
 
             //@yingshaoxo
@@ -172,7 +172,7 @@ public class SetupWizardActivity extends AppCompatActivity {
         @NonNull
         @Override
         public Intent createIntent(@NonNull Context context, Void input) {
-            ComponentName admin = new ComponentName(context.getApplicationContext(), ShelterDeviceAdminReceiver.class);
+            ComponentName admin = new ComponentName(context.getApplicationContext(), AtlantisDeviceAdminReceiver.class);
             Intent intent = new Intent(DevicePolicyManager.ACTION_PROVISION_MANAGED_PROFILE);
             intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_SKIP_ENCRYPTION, true);
             intent.putExtra(DevicePolicyManager.EXTRA_PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME, admin);

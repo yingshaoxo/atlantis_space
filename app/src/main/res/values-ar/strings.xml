@@ -75,7 +75,7 @@
     <string name="service_auto_freeze_now">تجميد الآن</string>
     <string name="setup_wizard_please_wait">من فضلك انتظر…</string>
     <string name="documents_ui">فتح واجهة المستندات</string>
-    <string name="setup_wizard_welcome">مرحبًا بك في Shelter</string>
+    <string name="setup_wizard_welcome">مرحبًا بك في Atlantis</string>
     <string name="search">بحث</string>
     <string name="settings_translate">ترجمة</string>
     <string name="settings_block_contacts_searching">منع البحث عن جهات الاتصال</string>
@@ -83,7 +83,7 @@
     <string name="finish_provision_title">اضغط هنا لإنهاء إعداد العازل</string>
     <string name="finish_provision_desc">تهانينا! أنا على بعد ضغطة واحدة من إنهاء إعداد العازل.</string>
     <string name="launch_app_fail">لا يمكن تشغيل التطبيق %s لأنه لا واجهة مستخدم له.</string>
-    <string name="setup_wizard_welcome_text">Shelter هو تطبيق يساعدك على تشغيل التطبيقات الأخرى في ملف تعريف منفصل. يقوم بذلك عن طريق الاستفادة من ميزة <b>الملف الشخصي للعمل</b> في Android.
+    <string name="setup_wizard_welcome_text">Atlantis هو تطبيق يساعدك على تشغيل التطبيقات الأخرى في ملف تعريف منفصل. يقوم بذلك عن طريق الاستفادة من ميزة <b>الملف الشخصي للعمل</b> في Android.
 \n
 \nانقر \"التالي\"، وسنوفر لك المزيد من المعلومات حول العازل، وسترشدك خلال عملية الإعداد.
 \n

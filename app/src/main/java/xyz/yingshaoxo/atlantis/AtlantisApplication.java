@@ -6,12 +6,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 
 import xyz.yingshaoxo.atlantis.services.FileShuttleService;
-import xyz.yingshaoxo.atlantis.services.ShelterService;
+import xyz.yingshaoxo.atlantis.services.AtlantisService;
 import xyz.yingshaoxo.atlantis.utilities.LocalStorageManager;
 import xyz.yingshaoxo.atlantis.utilities.SettingsManager;
 
-public class ShelterApplication extends Application {
-    private ServiceConnection mShelterServiceConnection = null;
+public class AtlantisApplication extends Application {
+    private ServiceConnection mAtlantisServiceConnection = null;
     private ServiceConnection mFileShuttleServiceConnection = null;
 
     @Override
@@ -21,12 +21,12 @@ public class ShelterApplication extends Application {
         SettingsManager.initialize(this);
     }
 
-    public void bindShelterService(ServiceConnection conn, boolean foreground) {
-        unbindShelterService();
-        Intent intent = new Intent(getApplicationContext(), ShelterService.class);
+    public void bindAtlantisService(ServiceConnection conn, boolean foreground) {
+        unbindAtlantisService();
+        Intent intent = new Intent(getApplicationContext(), AtlantisService.class);
         intent.putExtra("foreground", foreground);
         bindService(intent, conn, Context.BIND_AUTO_CREATE);
-        mShelterServiceConnection = conn;
+        mAtlantisServiceConnection = conn;
     }
 
     public void bindFileShuttleService(ServiceConnection conn) {
@@ -36,10 +36,10 @@ public class ShelterApplication extends Application {
         mFileShuttleServiceConnection = conn;
     }
 
-    public void unbindShelterService() {
-        if (mShelterServiceConnection != null) {
+    public void unbindAtlantisService() {
+        if (mAtlantisServiceConnection != null) {
             try {
-                unbindService(mShelterServiceConnection);
+                unbindService(mAtlantisServiceConnection);
             } catch (Exception e) {
                 // This method call might fail if the service is already unbound
                 // just ignore anything that might happen.
@@ -47,7 +47,7 @@ public class ShelterApplication extends Application {
             }
         }
 
-        mShelterServiceConnection = null;
+        mAtlantisServiceConnection = null;
     }
 
     public void unbindFileShuttleService() {

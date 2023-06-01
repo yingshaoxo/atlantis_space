@@ -18,7 +18,7 @@ import android.os.Looper;
 import androidx.annotation.Nullable;
 
 import xyz.yingshaoxo.atlantis.R;
-import xyz.yingshaoxo.atlantis.receivers.ShelterDeviceAdminReceiver;
+import xyz.yingshaoxo.atlantis.receivers.AtlantisDeviceAdminReceiver;
 import xyz.yingshaoxo.atlantis.user_interface.DummyActivity;
 import xyz.yingshaoxo.atlantis.utilities.SettingsManager;
 import xyz.yingshaoxo.atlantis.utilities.Utility;
@@ -105,7 +105,7 @@ public class FreezeService extends Service {
 
             if (sAppToFreeze.size() > 0) {
                 DevicePolicyManager dpm = getSystemService(DevicePolicyManager.class);
-                ComponentName adminComponent = new ComponentName(FreezeService.this, ShelterDeviceAdminReceiver.class);
+                ComponentName adminComponent = new ComponentName(FreezeService.this, AtlantisDeviceAdminReceiver.class);
                 for (String app : sAppToFreeze) {
                     boolean shouldFreeze = true;
                     UsageStats stats =  mUsageStats.get(app);

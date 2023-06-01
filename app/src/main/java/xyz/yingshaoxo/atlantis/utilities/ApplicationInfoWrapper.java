@@ -39,7 +39,7 @@ public class ApplicationInfoWrapper implements Parcelable {
         return this;
     }
 
-    // Only used from ShelterService
+    // Only used from AtlantisService
     public ApplicationInfoWrapper setHidden(boolean hidden) {
         mIsHidden = hidden;
         return this;
@@ -62,7 +62,7 @@ public class ApplicationInfoWrapper implements Parcelable {
         return mInfo.splitSourceDirs;
     }
 
-    // NOTE: This does not relate to the "freezing" feature in Shelter
+    // NOTE: This does not relate to the "freezing" feature in Atlantis
     public boolean getEnabled() {
         return mInfo.enabled;
     }

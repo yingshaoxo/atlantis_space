@@ -10,7 +10,7 @@
     <string name="setup_wizard_please_wait">Lütfen bekleyin…</string>
     <string name="settings_source_code">Kaynak Kodu</string>
     <string name="settings_services">Hizmetler</string>
-    <string name="setup_wizard_welcome">Shelter\'a hoş geldiniz</string>
+    <string name="setup_wizard_welcome">Atlantis\'a hoş geldiniz</string>
     <string name="search">Ara</string>
     <string name="freeze_all_shortcut">Dondur</string>
     <string name="settings_translate">Çeviri</string>
@@ -20,11 +20,11 @@
     <string name="first_run_alert_cancel">İptal</string>
     <string name="camera_proxy_activity">Görüntü Dosyası Seçin</string>
     <string name="device_admin_desc">Uygulama İzolasyon Hizmeti</string>
-    <string name="device_admin_explanation">İzolasyon hizmetinin çalışabilmesi için Shelter\'ı Cihaz Yöneticisi yap.</string>
+    <string name="device_admin_explanation">İzolasyon hizmetinin çalışabilmesi için Atlantis\'ı Cihaz Yöneticisi yap.</string>
     <string name="setup_wizard_failed">Kurulum başarısız</string>
-    <string name="notifications_important">Shelter (Önemli)</string>
-    <string name="service_title">Shelter Hizmeti</string>
-    <string name="service_desc">Shelter şu an çalışıyor…</string>
+    <string name="notifications_important">Atlantis (Önemli)</string>
+    <string name="service_title">Atlantis Hizmeti</string>
+    <string name="service_desc">Atlantis şu an çalışıyor…</string>
     <string name="uninstall_app">Kaldır</string>
     <string name="app_installing">Yükleniyor...</string>
     <string name="freeze_app">Dondur</string>
@@ -51,10 +51,10 @@
     <string name="install_app_to_profile">İş profiline APK dosyası kurun</string>
     <string name="batch_operation">Çoklu İşlem</string>
     <string name="install_app_to_profile_success">Uygulama iş profiline yüklendi.</string>
-    <string name="finish_provision_title">Shelter kurulumunu tamamlamak için buraya tıklayın</string>
+    <string name="finish_provision_title">Atlantis kurulumunu tamamlamak için buraya tıklayın</string>
     <string name="settings_interaction">Etkileşim</string>
     <string name="documents_ui">Dosya Gezginini aç</string>
-    <string name="finish_provision_desc">Tebrikler! Shelter kurulumu bitmek üzere.</string>
+    <string name="finish_provision_desc">Tebrikler! Atlantis kurulumu bitmek üzere.</string>
     <string name="service_auto_freeze_now">Şimdi Dondur</string>
     <string name="create_freeze_all_shortcut">Çoklu Dondur Kısayolu Oluştur</string>
     <string name="freeze_all">Çoklu Dondur</string>
@@ -66,54 +66,54 @@
     <string name="shortcut_create_success">Kısayol, ana ekrana eklendi.</string>
     <string name="unsupported_launcher">Ana ekran uygulamanıza kısayol eklenemiyor. Detaylı bilgi için lütfen geliştirici ile iletişime geçin.</string>
     <string name="continue_anyway">Devam et</string>
-    <string name="setup_wizard_compatibility_text">Shelter, AOSP gibi Android türevleri için geliştirilmiştir. Bu türevlere AOSP (Android Open Source Project), Google Android (Pixel model cihazlarda) ve LineageOS gibi <b>AOSP-tabanlı açık kaynak ROM\'ların çoğu</b> dahildir. Eğer telefonunuzda bu Android türevlerinden biri yüklüyse Shelter büyük ihtimalle sorunsuz bir şekilde çalışacaktır.
+    <string name="setup_wizard_compatibility_text">Atlantis, AOSP gibi Android türevleri için geliştirilmiştir. Bu türevlere AOSP (Android Open Source Project), Google Android (Pixel model cihazlarda) ve LineageOS gibi <b>AOSP-tabanlı açık kaynak ROM\'ların çoğu</b> dahildir. Eğer telefonunuzda bu Android türevlerinden biri yüklüyse Atlantis büyük ihtimalle sorunsuz bir şekilde çalışacaktır.
 \n
 \nBazı cihaz üreticilerinin Android\'in temel koduna koyduğu aşırı müdahaleci özelleştirmeler cihazda çakışmalara, uyumsuzluklara ve beklenmeyen hatalara yol açabilir. Bazı özel ROM\'lar da uyumluluğu bozan değişikliklere sahip olabilir ancak bu durum telefon üreticilerinden kaynaklanan hatalara göre daha nadir görülür.
 \n
-\nShelter, sistemin sağladığı İş Profili özelliği için kullanılabilen bir arayüzden ibarettir. Sistem tarafından sağlanan bu özellik standart dışı ise veya hatalar barındırıyorsa, <b>Shelter bu sorunlara kendi başına çözüm getiremez</b>. İş Profili özelliğini bozduğu bilinen üretici sürümü bir Android kullanıyorsanız <b>bu uyarıyı dikkate almanızı tavsiye ederiz</b>. Shelter, bu koşullar altında düzgün çalışacağını garanti etmez.</string>
+\nAtlantis, sistemin sağladığı İş Profili özelliği için kullanılabilen bir arayüzden ibarettir. Sistem tarafından sağlanan bu özellik standart dışı ise veya hatalar barındırıyorsa, <b>Atlantis bu sorunlara kendi başına çözüm getiremez</b>. İş Profili özelliğini bozduğu bilinen üretici sürümü bir Android kullanıyorsanız <b>bu uyarıyı dikkate almanızı tavsiye ederiz</b>. Atlantis, bu koşullar altında düzgün çalışacağını garanti etmez.</string>
     <string name="settings_block_contacts_searching_desc">Ana profilin iş profiline bağlı olan rehbere erişimini engelle.</string>
     <string name="service_auto_freeze_title">Bekleyen otomatik dondurma</string>
     <string name="service_auto_freeze_desc">Ekranınızı kilitlediğinizde \"Aktifleştir &amp; Çalıştır\" seçeneği üzerinden başlatılan uygulamalar otomatik olarak dondurulacaktır.</string>
     <string name="settings_cross_profile_file_chooser">Dosya Köprüsü</string>
     <string name="settings_auto_freeze_service_desc">Ekranınızı kilitlediğinizde, \"Aktifleştir &amp; Çalıştır\" kısayolu üzerinden başlatılan uygulamalar otomatik olarak dondurulacaktır.</string>
-    <string name="work_profile_provision_failed">İş profili atanamadı. Tekrar denemek için Shelter\'ı yeniden başlatın.</string>
+    <string name="work_profile_provision_failed">İş profili atanamadı. Tekrar denemek için Atlantis\'ı yeniden başlatın.</string>
     <string name="miui_cannot_clone">MIUI yüklü cihazlarda sistem dışı uygulamaların klonlanması henüz mümkün değildir. Lütfen sisteminizde yüklü olan uygulama mağazasını (örn. <b>Google Play Store</b>) iş profilinize klonlayın ve sistem dışı uygulamaları bu klon mağaza üzerinden yükleyin.</string>
-    <string name="clone_fail_system_app">Shelter, yetkisi dışında kalan bir profile sistem uygulamalarını klonlayamaz.</string>
-    <string name="uninstall_fail_system_app">Shelter, yetkisi dışında kalan bir profilden sistem uygulamalarını kaldıramaz.</string>
-    <string name="work_profile_not_found">İş profili bulunamadı. İş profilini tekrar atamak için lütfen Shelter\'ı yeniden başlatın.</string>
-    <string name="setup_wizard_welcome_text">Shelter, Android\'in <b>İş Profili</b> özelliğini kullanarak diğer uygulamaları izole bir profilde çalıştırmanızı sağlayan bir uygulamadır.
+    <string name="clone_fail_system_app">Atlantis, yetkisi dışında kalan bir profile sistem uygulamalarını klonlayamaz.</string>
+    <string name="uninstall_fail_system_app">Atlantis, yetkisi dışında kalan bir profilden sistem uygulamalarını kaldıramaz.</string>
+    <string name="work_profile_not_found">İş profili bulunamadı. İş profilini tekrar atamak için lütfen Atlantis\'ı yeniden başlatın.</string>
+    <string name="setup_wizard_welcome_text">Atlantis, Android\'in <b>İş Profili</b> özelliğini kullanarak diğer uygulamaları izole bir profilde çalıştırmanızı sağlayan bir uygulamadır.
 \n
-\n\"İleri\" seçeneğine tıklarsanız sizi Shelter ve kurulum süreci hakkında detaylı bir şekilde bilgilendireceğiz.
+\n\"İleri\" seçeneğine tıklarsanız sizi Atlantis ve kurulum süreci hakkında detaylı bir şekilde bilgilendireceğiz.
 \n
 \nTüm bilgileri dikkatlice okumanızı tavsiye ederiz.</string>
-    <string name="setup_wizard_failed_text">Üzgünüz, Shelter kurulumu başarısız.
+    <string name="setup_wizard_failed_text">Üzgünüz, Atlantis kurulumu başarısız.
 \n
-\nCihazınızda eski bir Shelter sürümünün veya başka bir uygulamanın oluşturduğu bir İş Profili varsa devam etmek için lütfen bu profili kaldırın (İş Profiline \"Ayarlar -&gt; Hesap\" menüsünden ulaşabilirsiniz).
+\nCihazınızda eski bir Atlantis sürümünün veya başka bir uygulamanın oluşturduğu bir İş Profili varsa devam etmek için lütfen bu profili kaldırın (İş Profiline \"Ayarlar -&gt; Hesap\" menüsünden ulaşabilirsiniz).
 \n
-\nEğer eski bir İş Profiliniz yoksa ve kurulumu iptal etmediyseniz, kurulumun başarısız olmasının sebebi yüksek ihtimalle Shelter ile başka bir İş Profili yöneticisinin çakışması veya sisteminizin büyük ölçüde değiştirilmiş olmasıdır. Shelter bu tip sorunları maalesef kendi başına çözemez.
+\nEğer eski bir İş Profiliniz yoksa ve kurulumu iptal etmediyseniz, kurulumun başarısız olmasının sebebi yüksek ihtimalle Atlantis ile başka bir İş Profili yöneticisinin çakışması veya sisteminizin büyük ölçüde değiştirilmiş olmasıdır. Atlantis bu tip sorunları maalesef kendi başına çözemez.
 \n
 \nÇıkmak için \"İleri\" seçeneğine tıklayın.</string>
-    <string name="setup_wizard_permissions_text">Shelter, çalışmak için herhangi bir izne ihityaç duymaz ancak kurulum sürecini başlattığınızda Shelter bir İş Profili oluşturmayı deneyecek ve bu İş Profilinin <b>profil yöneticisi</b> olacaktır.
+    <string name="setup_wizard_permissions_text">Atlantis, çalışmak için herhangi bir izne ihityaç duymaz ancak kurulum sürecini başlattığınızda Atlantis bir İş Profili oluşturmayı deneyecek ve bu İş Profilinin <b>profil yöneticisi</b> olacaktır.
 \n
-\nProfil yöneticisi, bir Cihaz Yöneticisi kadar kapsamlı yetkilere sahiptir fakat bu yetkiler sadece yönetilen profil için geçerlidir. Bu yetkiler Shelter\'ın sorunsuz bir şekilde çalışması için gereklidir.
+\nProfil yöneticisi, bir Cihaz Yöneticisi kadar kapsamlı yetkilere sahiptir fakat bu yetkiler sadece yönetilen profil için geçerlidir. Bu yetkiler Atlantis\'ın sorunsuz bir şekilde çalışması için gereklidir.
 \n
-\nShelter, bazı gelişmiş özellikler için iş profili <b>dışında</b> başka izinlere ihtiyaç duyabilir. Bu özellikleri kullandığınız zaman Shelter sizden bu izinleri isteyecektir.</string>
+\nAtlantis, bazı gelişmiş özellikler için iş profili <b>dışında</b> başka izinlere ihtiyaç duyabilir. Bu özellikleri kullandığınız zaman Atlantis sizden bu izinleri isteyecektir.</string>
     <string name="setup_wizard_ready_text">Kurulum için hazırlık tamamlandı. Eğer cihazınızın Android sürümü 7 veya daha eskiyse devam etmeden önce lütfen cihazınızın Rahatsız Etmeyin modunda <b>olmadığından</b> emin olun çünkü kurulumun son aşamasında <b>bir bildirime tıklamanız</b> gerekiyor.
 \n
 \nHazır olduğunuzda kurulum sürecini başlatmak için \"İleri\" seçeneğine tıklayın.</string>
-    <string name="setup_wizard_action_required_text">Shelter tarafından size bir bildirim yollandı. Kurulumu tamamlamak için <b>lütfen bu bildirime tıklayın</b>.
+    <string name="setup_wizard_action_required_text">Atlantis tarafından size bir bildirim yollandı. Kurulumu tamamlamak için <b>lütfen bu bildirime tıklayın</b>.
 \n
 \nEğer bir bildirim gelmediyse, lütfen cihazınızın Rahatsız Etmeyin modunda olmadığından emin olun ve bildirim çekmecenize bakın.
 \n
 \nKurulum sürecine baştan başlamak isterseniz lütfen uygulama verilerini sıfırlayın ve uygulamayı yeniden başlatın.</string>
-    <string name="setup_wizard_please_wait_text">İş Profili oluşturuluyor ve Shelter kurulumu yapılıyor.</string>
+    <string name="setup_wizard_please_wait_text">İş Profili oluşturuluyor ve Atlantis kurulumu yapılıyor.</string>
     <string name="settings_dont_freeze_foreground">Önplandaki Uygulamalar Dondurulmasın</string>
-    <string name="provision_finished">Kurulum tamamlandı. Shelter yeniden başlatılıyor. Eğer otomatik başlatma gerçekleşmezse, lütfen Shelter\'ı ana ekran uygulamanız üzerinden tekrar başlatın.</string>
+    <string name="provision_finished">Kurulum tamamlandı. Atlantis yeniden başlatılıyor. Eğer otomatik başlatma gerçekleşmezse, lütfen Atlantis\'ı ana ekran uygulamanız üzerinden tekrar başlatın.</string>
     <string name="settings_dont_freeze_foreground_desc">Ekranınızı kilitlediğinizde önplanda çalışan ve görünür etkinliğe sahip olan uygulamalar dondurulmaz. Bu özellik sayesinde müzik çalar gibi uygulamaları daha rahat bir şekilde kullanabilirsiniz ancak sonrasında bu uygulamaları \"Çoklu Dondurma Kısayolu\" üzerinden dondurmanız gerekir.</string>
-    <string name="work_mode_disabled">Uygulama başlatılırken İş Profilinin devre dışı bırakıldığı tespit edildi. İş Profilini etkinleştirdiyseniz, değişikliklerin uygulanması için lütfen Shelter\'ı yeniden başlatın.</string>
+    <string name="work_mode_disabled">Uygulama başlatılırken İş Profilinin devre dışı bırakıldığı tespit edildi. İş Profilini etkinleştirdiyseniz, değişikliklerin uygulanması için lütfen Atlantis\'ı yeniden başlatın.</string>
     <string name="settings_cross_profile_file_chooser_desc">Etkinleştirildiğinde iki profil arasında dosya göz atma, görüntüleme, seçme ve kopyalama işlemleri yapılabilir hale gelir. Bu işlemler, dosya sistemi izolasyonunu bozmadan, YALNIZCA Dosya Gezgini (sisteminizde Dosyalar veya Belgeler olarak adlandırılır) veya Dosya Gezgini özelliğine sahip uygulamalar üzerinden yapılır (bu özelliğe sahip uygulamaların seçtiğiniz dosyalara erişimi geçicidir).</string>
-    <string name="request_storage_manager">Dosya Köprüsü özelliğini kullanmak için Shelter\'ın <b>Tüm Dosyalara</b> erişmesi gerekiyor. Lütfen \"Tamam\" seçeneğine tıkladıktan sonra <b>İKİ SHELTER UYGULAMASINA DA</b> (Kişisel / İş) bu izni verin.</string>
-    <string name="request_system_alert">Dosya Köprüsü özelliğinin düzgün bir şekilde çalışabilmesi için Shelter\'ın <b>Diğer Uygulamalar Üzerinde Göster</b> iznine ihtiyacı var. Lütfen \"Tamam\" seçeneğine tıkladıktan sonra <b>İKİ SHELTER UYGULAMASINA DA</b> (Kişisel / İş) bu izni verin. Söz konusu izin, Dosya Köprüsü hizmetlerini arkaplanda başlatmak için kullanılır.</string>
-    <string name="request_usage_stats">Bu özelliği kullanmak için Shelter\'ın <b>Kullanım Erişimi</b> iznine ihtiyacı var. Lütfen \"Tamam\" seçeneğine tıkladıktan sonra <b>İKİ SHELTER UYGULAMASINA DA</b> (Kişisel / İş) bu izni verin, aksi takdirde söz konusu özellik düzgün bir şekilde çalışmayabilir.</string>
+    <string name="request_storage_manager">Dosya Köprüsü özelliğini kullanmak için Atlantis\'ın <b>Tüm Dosyalara</b> erişmesi gerekiyor. Lütfen \"Tamam\" seçeneğine tıkladıktan sonra <b>İKİ SHELTER UYGULAMASINA DA</b> (Kişisel / İş) bu izni verin.</string>
+    <string name="request_system_alert">Dosya Köprüsü özelliğinin düzgün bir şekilde çalışabilmesi için Atlantis\'ın <b>Diğer Uygulamalar Üzerinde Göster</b> iznine ihtiyacı var. Lütfen \"Tamam\" seçeneğine tıkladıktan sonra <b>İKİ SHELTER UYGULAMASINA DA</b> (Kişisel / İş) bu izni verin. Söz konusu izin, Dosya Köprüsü hizmetlerini arkaplanda başlatmak için kullanılır.</string>
+    <string name="request_usage_stats">Bu özelliği kullanmak için Atlantis\'ın <b>Kullanım Erişimi</b> iznine ihtiyacı var. Lütfen \"Tamam\" seçeneğine tıkladıktan sonra <b>İKİ SHELTER UYGULAMASINA DA</b> (Kişisel / İş) bu izni verin, aksi takdirde söz konusu özellik düzgün bir şekilde çalışmayabilir.</string>
     <string name="settings_camera_proxy_desc">Başka uygulamalarda kullanmanız için sahte bir kamera uygulaması oluşturur ve böylece Dosya Gezgini üzerinden (veya etkinse Dosya Köprüsü üzerinden) herhangi bir görüntü dosyasını bu uygulamalara kameradan çekilmiş bir fotoğraf olarak sunabilirsiniz. Bu özellik, normalde Dosya Gezginine erişimi olmasa bile, kamera uygulamaları üzerinden fotoğraf çekme yetkisine sahip tüm uygulamalar için Dosya Köprüsü özelliğini etkinleştirir.</string>
 </resources>
