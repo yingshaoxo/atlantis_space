@@ -230,8 +230,8 @@ public class MainActivity extends AppCompatActivity {
                     return AppListFragment.newInstance(mServiceMain, false);
                 } else if (position == 1) {
                     return AppListFragment.newInstance(mServiceWork, true);
-                } else if (position == 2) {
-                    return Tabs_Sub_Page.newInstance(mServiceWork, true);
+//                } else if (position == 2) {
+//                    return Tabs_Sub_Page.newInstance(mServiceWork, true);
                 } else {
                     throw new RuntimeException("How did this happen?");
                 }
@@ -239,7 +239,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public int getItemCount() {
-                return 3;
+                return 2;
+//                return 3;
                 //@yingshaoxo
                 //return pager.getChildCount();
             }
@@ -250,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 int[] menuIds = new int[]{
                         R.id.bottom_navigation_main,
                         R.id.bottom_navigation_work,
-                        R.id.bottom_navigation_shop
+                        //R.id.bottom_navigation_shop
                 };
                 nav.setSelectedItemId(menuIds[position]);
 
@@ -266,8 +267,8 @@ public class MainActivity extends AppCompatActivity {
                 pager.setCurrentItem(0);
             } else if (itemId == R.id.bottom_navigation_work) {
                 pager.setCurrentItem(1);
-            } else if (itemId == R.id.bottom_navigation_shop) {
-                pager.setCurrentItem(2);
+//            } else if (itemId == R.id.bottom_navigation_shop) {
+//                pager.setCurrentItem(2);
             }
             return true;
         });

@@ -10,8 +10,8 @@
         android:icon="@drawable/icon_flight"
         android:title="@string/fragment_profile_work" />
 
-    <item
-        android:id="@+id/bottom_navigation_shop"
-        android:icon="@drawable/icon_local_convenience_store"
-        android:title="@string/fragment_profile_shop" />
+<!--    <item-->
+<!--        android:id="@+id/bottom_navigation_shop"-->
+<!--        android:icon="@drawable/icon_local_convenience_store"-->
+<!--        android:title="@string/fragment_profile_shop" />-->
 </menu>
