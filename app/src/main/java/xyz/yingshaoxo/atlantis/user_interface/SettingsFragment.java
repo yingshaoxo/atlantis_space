@@ -54,24 +54,24 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Prefer
         mServiceWork = IAtlantisService.Stub.asInterface(
                 ((Bundle) getActivity().getIntent().getParcelableExtra("extras")).getBinder("profile_service"));
 
-        // Set the displayed version
-        try {
-            findPreference(SETTINGS_VERSION).setSummary(
-                    getContext().getPackageManager().getPackageInfo(
-                            getContext().getPackageName(), 0).versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            // WTF?
-        }
-
-        // Open source code url on click
-        findPreference(SETTINGS_SOURCE_CODE)
-                .setOnPreferenceClickListener(this::openSummaryUrl);
-        findPreference(SETTINGS_BUG_REPORT)
-                .setOnPreferenceClickListener(this::openSummaryUrl);
-        findPreference(SETTINGS_PATREON)
-                .setOnPreferenceClickListener(this::openSummaryUrl);
-        findPreference(SETTINGS_TRANSLATE)
-                .setOnPreferenceClickListener(this::openSummaryUrl);
+//        // Set the displayed version
+//        try {
+//            findPreference(SETTINGS_VERSION).setSummary(
+//                    getContext().getPackageManager().getPackageInfo(
+//                            getContext().getPackageName(), 0).versionName);
+//        } catch (PackageManager.NameNotFoundException e) {
+//            // WTF?
+//        }
+//
+//        // Open source code url on click
+//        findPreference(SETTINGS_SOURCE_CODE)
+//                .setOnPreferenceClickListener(this::openSummaryUrl);
+//        findPreference(SETTINGS_BUG_REPORT)
+//                .setOnPreferenceClickListener(this::openSummaryUrl);
+//        findPreference(SETTINGS_PATREON)
+//                .setOnPreferenceClickListener(this::openSummaryUrl);
+//        findPreference(SETTINGS_TRANSLATE)
+//                .setOnPreferenceClickListener(this::openSummaryUrl);
 
         // === Interactions ===
         mPrefCrossProfileFileChooser = (CheckBoxPreference) findPreference(SETTINGS_CROSS_PROFILE_FILE_CHOOSER);

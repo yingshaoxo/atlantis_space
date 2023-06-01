@@ -42,8 +42,8 @@
     <string name="batch_operation">Batch operation</string>
 
     <!-- App Context Menu -->
-    <string name="clone_to_work_profile">Clone to Atlantis (Work Profile)</string>
-    <string name="clone_to_main_profile">Clone to Main Profile</string>
+    <string name="clone_to_work_profile">Clone to Atlantis (Inside)</string>
+    <string name="clone_to_main_profile">Clone to Outside</string>
     <string name="uninstall_app">Uninstall</string>
     <string name="freeze_app">Freeze</string>
     <string name="unfreeze_app">Unfreeze</string>

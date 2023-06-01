@@ -1,11 +1,15 @@
 package xyz.yingshaoxo.atlantis.user_interface;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -34,21 +38,58 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
         private TextView mPackage;
         // This text view shows the order of all selected items
         private TextView mSelectOrder;
+
+        private GestureDetector gestureDetector;
+
+        private View current_view;
+
         int mIndex = -1;
+
+        private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+            @Override
+            public boolean onSingleTapConfirmed(@NonNull MotionEvent e) {
+                onClick();
+
+                return super.onSingleTapConfirmed(e);
+            }
+
+            @Override
+            public boolean onDoubleTapEvent(@NonNull MotionEvent e) {
+                if (mAllowMultiSelect) {
+                    // inside
+                    if (e.getAction() == MotionEvent.ACTION_UP) {
+                        Intent intent = new Intent(DummyActivity.UNFREEZE_AND_LAUNCH);
+                        intent.setComponent(new ComponentName(current_view.getContext(), DummyActivity.class));
+                        intent.putExtra("packageName", mList.get(mIndex).getPackageName());
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        DummyActivity.registerSameProcessRequest(intent);
+                        current_view.getContext().startActivity(intent);
+                    }
+                } else {
+                    // outside
+                    onClick();
+                }
+
+                return super.onDoubleTapEvent(e);
+            }
+        }
+
         ViewHolder(View view) {
             super(view);
             mIcon = view.findViewById(R.id.list_app_icon);
             mTitle = view.findViewById(R.id.list_app_title);
             mPackage = view.findViewById(R.id.list_app_package);
             mSelectOrder = view.findViewById(R.id.list_app_select_order);
-            view.setOnClickListener((v) -> onClick());
-            if (mAllowMultiSelect) {
-                view.setOnLongClickListener((v) -> onLongClick());
-            }
+            gestureDetector = new GestureDetector(view.getContext(), new GestureListener());
+
+            view.setOnTouchListener((v, motion) -> {
+                current_view = v;
+                return gestureDetector.onTouchEvent(motion);
+            });
         }
 
-        void onClick() {
-            if (mIndex == -1) return;
+        boolean onClick() {
+            if (mIndex == -1) return false;
 
             if (!mMultiSelectMode) {
                 // Show available operations via the Fragment
@@ -66,6 +107,8 @@ public class AppListAdapter extends RecyclerView.Adapter<AppListAdapter.ViewHold
                     deselect();
                 }
             }
+
+            return false;
         }
 
         boolean onLongClick() {

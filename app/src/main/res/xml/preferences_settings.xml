@@ -43,33 +43,33 @@
 
     </androidx.preference.PreferenceCategory>
 
-    <androidx.preference.PreferenceCategory
-        android:title="@string/settings_about">
+<!--    <androidx.preference.PreferenceCategory-->
+<!--        android:title="@string/settings_about">-->
 
-        <androidx.preference.Preference
-            android:key="settings_version"
-            android:title="@string/settings_version" />
+<!--        <androidx.preference.Preference-->
+<!--            android:key="settings_version"-->
+<!--            android:title="@string/settings_version" />-->
 
-        <androidx.preference.Preference
-            android:key="settings_source_code"
-            android:title="@string/settings_source_code"
-            android:summary="@string/settings_source_code_url" />
+<!--        <androidx.preference.Preference-->
+<!--            android:key="settings_source_code"-->
+<!--            android:title="@string/settings_source_code"-->
+<!--            android:summary="@string/settings_source_code_url" />-->
 
-        <androidx.preference.Preference
-            android:key="settings_translate"
-            android:title="@string/settings_translate"
-            android:summary="@string/settings_translate_url" />
+<!--        <androidx.preference.Preference-->
+<!--            android:key="settings_translate"-->
+<!--            android:title="@string/settings_translate"-->
+<!--            android:summary="@string/settings_translate_url" />-->
 
-        <androidx.preference.Preference
-            android:key="settings_bug_report"
-            android:title="@string/settings_bug_report"
-            android:summary="@string/settings_bug_report_url" />
+<!--        <androidx.preference.Preference-->
+<!--            android:key="settings_bug_report"-->
+<!--            android:title="@string/settings_bug_report"-->
+<!--            android:summary="@string/settings_bug_report_url" />-->
 
-        <androidx.preference.Preference
-            android:key="settings_patreon"
-            android:title="@string/settings_patreon"
-            android:summary="@string/settings_patreon_url" />
+<!--        <androidx.preference.Preference-->
+<!--            android:key="settings_patreon"-->
+<!--            android:title="@string/settings_patreon"-->
+<!--            android:summary="@string/settings_patreon_url" />-->
 
-    </androidx.preference.PreferenceCategory>
+<!--    </androidx.preference.PreferenceCategory>-->
 
 </androidx.preference.PreferenceScreen>
