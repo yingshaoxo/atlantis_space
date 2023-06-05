@@ -2,6 +2,7 @@ package xyz.yingshaoxo.atlantisspace.user_interface;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Color;
@@ -472,6 +473,13 @@ public class MainActivity extends AppCompatActivity {
             Intent documentsUiIntent = new Intent(Intent.ACTION_VIEW);
             documentsUiIntent.setDataAndType(null, "vnd.android.document/root");
             startActivity(documentsUiIntent);
+            return true;
+        } else if (itemId == R.id.main_menu_about) {
+//            Toast.makeText(this, "This application was made by @yingshaoxo", Toast.LENGTH_LONG).show();
+            new AlertDialog.Builder(this, R.style.Theme_AppCompat_Light_Dialog)
+                    .setTitle("About")
+                    .setMessage("This application was made by @yingshaoxo")
+                    .show();
             return true;
         } else {
             return super.onOptionsItemSelected(item);

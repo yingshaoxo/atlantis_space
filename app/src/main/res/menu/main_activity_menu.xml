@@ -37,4 +37,8 @@
         android:title="@string/show_all"
         android:checkable="true"
         android:checked="false" />
+
+    <item
+        android:id="@+id/main_menu_about"
+        android:title="About" />
 </menu>
