@@ -10,6 +10,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Icon;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -122,7 +124,11 @@ public class AppListFragment extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDefaultIcon = getActivity().getPackageManager().getDefaultActivityIcon();
+        //mDefaultIcon = getActivity().getPackageManager().getDefaultActivityIcon();
+        ShapeDrawable shapeDrawable = new ShapeDrawable(new OvalShape());
+        shapeDrawable.getPaint().setColor(this.getContext().getColor(android.R.color.transparent));
+        mDefaultIcon = shapeDrawable;
+
         IBinder service = getArguments().getBinder("service");
         mService = IAtlantisService.Stub.asInterface(service);
         mIsRemote = getArguments().getBoolean("is_remote");
