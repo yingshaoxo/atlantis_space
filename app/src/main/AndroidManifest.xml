@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="xyz.yingshaoxo.atlantis"
+    package="xyz.yingshaoxo.atlantisspace"
     android:installLocation="internalOnly" >
 
     <uses-feature android:name="android.software.device_admin" android:required="true"/>
@@ -29,7 +29,7 @@
     </queries>
 
     <application
-        android:name="xyz.yingshaoxo.atlantis.AtlantisApplication"
+        android:name="xyz.yingshaoxo.atlantisspace.AtlantisSpaceApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -38,7 +38,7 @@
         android:theme="@style/AppTheme">
 
         <!-- The main activity for UI -->
-        <activity android:name="xyz.yingshaoxo.atlantis.user_interface.MainActivity"
+        <activity android:name="xyz.yingshaoxo.atlantisspace.user_interface.MainActivity"
             android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
@@ -48,45 +48,45 @@
         </activity>
 
         <!-- Setup Wizard -->
-        <activity android:name="xyz.yingshaoxo.atlantis.user_interface.SetupWizardActivity"
+        <activity android:name="xyz.yingshaoxo.atlantisspace.user_interface.SetupWizardActivity"
             android:theme="@style/SuwThemeMaterial.Light"
             android:launchMode="singleTask"
             android:exported="false"/>
 
         <!-- The Settings activity -->
-        <activity android:name="xyz.yingshaoxo.atlantis.user_interface.SettingsActivity"
+        <activity android:name="xyz.yingshaoxo.atlantisspace.user_interface.SettingsActivity"
             android:label="@string/settings" />
 
         <!-- An activity that wraps intents that cross the profile boundary -->
         <!-- Needed because only cross-profile Activity intents are supported -->
-        <activity android:name="xyz.yingshaoxo.atlantis.user_interface.DummyActivity"
+        <activity android:name="xyz.yingshaoxo.atlantisspace.user_interface.DummyActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:theme="@style/Theme.AppCompat.Translucent.NoTitleBar"
             android:exported="true">
             <intent-filter>
-                <action android:name="xyz.yingshaoxo.atlantis.action.FINALIZE_PROVISION" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.START_SERVICE" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.TRY_START_SERVICE" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.INSTALL_PACKAGE" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.UNINSTALL_PACKAGE" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.UNFREEZE_AND_LAUNCH" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.PUBLIC_UNFREEZE_AND_LAUNCH" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.PUBLIC_FREEZE_ALL" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.FREEZE_ALL_IN_LIST" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.FINALIZE_PROVISION" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.START_SERVICE" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.TRY_START_SERVICE" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.INSTALL_PACKAGE" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.UNINSTALL_PACKAGE" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.UNFREEZE_AND_LAUNCH" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.PUBLIC_UNFREEZE_AND_LAUNCH" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.PUBLIC_FREEZE_ALL" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.FREEZE_ALL_IN_LIST" />
                 <!-- We need two of these to avoid being prompted with an action chooser dialog -->
                 <!-- When the intent is actually already forwarded to work profile -->
-                <action android:name="xyz.yingshaoxo.atlantis.action.START_FILE_SHUTTLE" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.START_FILE_SHUTTLE_2" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.SYNCHRONIZE_PREFERENCE" />
-                <action android:name="xyz.yingshaoxo.atlantis.action.PACKAGEINSTALLER_CALLBACK" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.START_FILE_SHUTTLE" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.START_FILE_SHUTTLE_2" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.SYNCHRONIZE_PREFERENCE" />
+                <action android:name="xyz.yingshaoxo.atlantisspace.action.PACKAGEINSTALLER_CALLBACK" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
 
         <!-- An activity to listen to ACTION_PROVISIONING_SUCCESSFUL for finalization -->
-        <!-- This replaces the functionality of AtlantisDeviceAdminReceiver on Oreo and above -->
-        <activity android:name="xyz.yingshaoxo.atlantis.user_interface.FinalizeActivity"
+        <!-- This replaces the functionality of AtlantisSpaceDeviceAdminReceiver on Oreo and above -->
+        <activity android:name="xyz.yingshaoxo.atlantisspace.user_interface.FinalizeActivity"
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:theme="@style/Theme.AppCompat.Translucent.NoTitleBar"
@@ -99,7 +99,7 @@
         </activity>
 
         <!-- Activity to forward ACTION_IMAGE_CAPTURE as ACTION_OPEN_DOCUMENT -->
-        <activity android:name="xyz.yingshaoxo.atlantis.user_interface.CameraProxyActivity"
+        <activity android:name="xyz.yingshaoxo.atlantisspace.user_interface.CameraProxyActivity"
             android:excludeFromRecents="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:label="@string/camera_proxy_activity"
@@ -111,7 +111,7 @@
         </activity>
 
         <!-- Implementation of the device policy controller -->
-        <receiver android:name="xyz.yingshaoxo.atlantis.receivers.AtlantisDeviceAdminReceiver"
+        <receiver android:name="xyz.yingshaoxo.atlantisspace.receivers.AtlantisSpaceDeviceAdminReceiver"
             android:label="@string/device_admin_label"
             android:description="@string/device_admin_desc"
             android:permission="android.permission.BIND_DEVICE_ADMIN"
@@ -127,8 +127,8 @@
 
         <!-- A FileProvider that proxies opened Fd from the other profile -->
         <provider
-            android:name="xyz.yingshaoxo.atlantis.utilities.FileProviderProxy"
-            android:authorities="xyz.yingshaoxo.atlantis.files"
+            android:name="xyz.yingshaoxo.atlantisspace.utilities.FileProviderProxy"
+            android:authorities="xyz.yingshaoxo.atlantisspace.files"
             android:grantUriPermissions="true"
             android:exported="false">
             <meta-data
@@ -138,8 +138,8 @@
 
         <!-- A DocumentsProvider that lists files in another profile -->
         <provider
-            android:name="xyz.yingshaoxo.atlantis.utilities.CrossProfileDocumentsProvider"
-            android:authorities="xyz.yingshaoxo.atlantis.documents"
+            android:name="xyz.yingshaoxo.atlantisspace.utilities.CrossProfileDocumentsProvider"
+            android:authorities="xyz.yingshaoxo.atlantisspace.documents"
             android:grantUriPermissions="true"
             android:permission="android.permission.MANAGE_DOCUMENTS"
             android:exported="true"
@@ -151,21 +151,21 @@
 
         <!-- Core service running on both the main profile and the work profile -->
         <!-- Actions like cloning / freezing apps will be performed by this service -->
-        <service android:name="xyz.yingshaoxo.atlantis.services.AtlantisService"
+        <service android:name="xyz.yingshaoxo.atlantisspace.services.AtlantisSpaceService"
                 android:exported="true"
                 android:permission="android.permission.BIND_DEVICE_ADMIN"/>
 
         <!-- Service to forward file information between profiles -->
-        <service android:name="xyz.yingshaoxo.atlantis.services.FileShuttleService"
+        <service android:name="xyz.yingshaoxo.atlantisspace.services.FileShuttleService"
                 android:exported="true"
                 android:permission="android.permission.BIND_DEVICE_ADMIN" />
 
-        <!-- A hack service to ensure every AtlantisService is killed when App is removed -->
+        <!-- A hack service to ensure every AtlantisSpaceService is killed when App is removed -->
         <!-- from recent tasks -->
-        <service android:name="xyz.yingshaoxo.atlantis.services.KillerService" />
+        <service android:name="xyz.yingshaoxo.atlantisspace.services.KillerService" />
 
         <!-- Service to freeze apps on screen lock -->
-        <service android:name="xyz.yingshaoxo.atlantis.services.FreezeService" />
+        <service android:name="xyz.yingshaoxo.atlantisspace.services.FreezeService" />
     </application>
 
 </manifest>

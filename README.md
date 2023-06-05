@@ -1,7 +1,7 @@
-Atlantis
+AtlantisSpace
 ===
 
-Atlantis an isolated space that utilizes everything to protect your freedom to fight censorship.
+AtlantisSpace an isolated space that utilizes everything to protect your freedom to fight censorship.
 
 <!-- Downloads
 ===
@@ -9,7 +9,7 @@ Atlantis an isolated space that utilizes everything to protect your freedom to f
 - [F-Droid](https://f-droid.org/app/xyz.yingshaoxo.atlantis) (Signed by F-Droid)
 - [Custom F-Droid Repository](https://fdroid.typeblog.net) (Signed by PeterCxy, contains latest development versions)
 
-You cannot switch between versions listed above that have different signature without uninstalling Atlantis first.
+You cannot switch between versions listed above that have different signature without uninstalling AtlantisSpace first.
 
 Features
 ===
@@ -29,15 +29,15 @@ __The GitHub Issue list and pull requests are not checked regularly. Please use 
 Caveats & Known Issues
 ===
 
-- Some caveats and known issues are discussed during the setup process of Atlantis. __Please read through text in the setup wizard carefully__.
-- Atlantis is only as safe as the Work Profile implementation of the Android OS you are using. For details, see <https://support.google.com/work/android/answer/6191949?hl=en>
+- Some caveats and known issues are discussed during the setup process of AtlantisSpace. __Please read through text in the setup wizard carefully__.
+- AtlantisSpace is only as safe as the Work Profile implementation of the Android OS you are using. For details, see <https://support.google.com/work/android/answer/6191949?hl=en>
 
 State of the Project, Feature Requests, etc.
 ===
 
-Since Atlantis simply makes use of the Work Profile APIs exposed by Android, there is a limited set of features that are possible to implement via the app. As we do not intend on leveraging (or "abusing") adb privileges, the features of Atlantis can only be a strict subset of the exposed, unprivileged APIs.
+Since AtlantisSpace simply makes use of the Work Profile APIs exposed by Android, there is a limited set of features that are possible to implement via the app. As we do not intend on leveraging (or "abusing") adb privileges, the features of AtlantisSpace can only be a strict subset of the exposed, unprivileged APIs.
 
-As a result, we do not intend on adding a lot of new features to Atlantis going forward, unless there is to be big changes in the capabilities of work profile APIs. Atlantis is currently in an effective **maintenance mode**. Nevertheless, the author is still committed to regularly **adapting Atlantis to all new Android versions as soon as possible after they are released** -- this includes upgrading the target SDK level, adapting to any new features or restrictions introduced by the new Android version, updating all dependencies, and so on. The author still relies on Atlantis for his daily life, so Atlantis will **not** become abandonware in the forseeable future.
+As a result, we do not intend on adding a lot of new features to AtlantisSpace going forward, unless there is to be big changes in the capabilities of work profile APIs. AtlantisSpace is currently in an effective **maintenance mode**. Nevertheless, the author is still committed to regularly **adapting AtlantisSpace to all new Android versions as soon as possible after they are released** -- this includes upgrading the target SDK level, adapting to any new features or restrictions introduced by the new Android version, updating all dependencies, and so on. The author still relies on AtlantisSpace for his daily life, so AtlantisSpace will **not** become abandonware in the forseeable future.
 
 Contributing
 ===
@@ -52,4 +52,4 @@ Contributing
 Uninstalling
 ===
 
-To uninstall Atlantis, please delete the work profile first in Settings -> Accounts, and then uninstall the Atlantis app normally. -->
+To uninstall AtlantisSpace, please delete the work profile first in Settings -> Accounts, and then uninstall the AtlantisSpace app normally. -->

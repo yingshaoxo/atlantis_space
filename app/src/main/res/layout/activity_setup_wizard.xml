@@ -5,4 +5,4 @@
     android:id="@+id/setup_wizard_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="xyz.yingshaoxo.atlantis.user_interface.SetupWizardActivity" />
+    tools:context="xyz.yingshaoxo.atlantisspace.user_interface.SetupWizardActivity" />

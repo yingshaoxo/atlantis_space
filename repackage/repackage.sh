@@ -2,7 +2,7 @@
 # Google Play does not yet allow MANAGE_EXTERNAL_STORAGE apps
 # so we have to work around this for now
 
-echo "==> Repackaging Atlantis ($1) for Google Play"
+echo "==> Repackaging AtlantisSpace ($1) for Google Play"
 apktool -o work d $1
 
 echo "=> Removing MANAGE_EXTERNAL_STORAGE from manifest"
