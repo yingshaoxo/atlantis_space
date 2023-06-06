@@ -39,7 +39,6 @@
 
         <!-- The main activity for UI -->
         <activity android:name="xyz.yingshaoxo.atlantisspace.user_interface.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:launchMode="singleTask"
             android:exported="true">
             <intent-filter>
