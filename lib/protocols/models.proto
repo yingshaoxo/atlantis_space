@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+message App_Model {
+    string apk_assets_path = 1;
+    string app_name_end_with_dot_apk = 2;
+    string app_name = 3;
+    string apk_path = 4;
+}
