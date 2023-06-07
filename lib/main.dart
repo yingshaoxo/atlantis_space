@@ -202,15 +202,58 @@ class _My_Top_BarState extends State<My_Top_Bar> {
               }),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
+      body: My_Default_Text_Style(
+        child: My_Tabs(),
+      ),
+    );
+  }
+}
+
+class My_Tabs extends StatefulWidget {
+  const My_Tabs({super.key});
+
+  @override
+  State<My_Tabs> createState() => _My_TabsState();
+}
+
+class _My_TabsState extends State<My_Tabs> {
+  List<Widget> widget_children = [
+    Icon(Icons.directions_car),
+    Icon(Icons.directions_transit),
+  ];
+
+  int _selected_index = 0;
+
+  void _on_item_tapped(int index) {
+    setState(() {
+      _selected_index = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: null,
+      body: My_Default_Text_Style(
+        child: Center(
+          child: widget_children.elementAt(_selected_index),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.public),
+            label: 'Outside',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.flight),
+            label: 'Inside',
+          ),
+        ],
+        currentIndex: _selected_index,
+        onTap: _on_item_tapped,
+        selectedItemColor: Colors.lightBlue[400],
+        backgroundColor: Colors.grey[100],
       ),
     );
   }

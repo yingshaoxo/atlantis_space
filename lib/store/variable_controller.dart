@@ -16,7 +16,7 @@ class Variable_Controllr extends GetxController {
   SharedPreferences? preferences;
 
   // app list
-  List<App_Model> app_list = [];
+  List<App_Model> outside_app_list = [];
   Rx<String> search_keywords = Rx("");
 
   // auth
