@@ -2,7 +2,10 @@ syntax = "proto3";
 
 message App_Model {
     string apk_assets_path = 1;
-    string app_name_end_with_dot_apk = 2;
+    string app_id = 2;
     string app_name = 3;
-    string apk_path = 4;
+    string app_name_end_with_dot_apk = 4;
+    string app_icon_base64_string = 5;
+    string source_apk_path = 6;
+    string exported_apk_path = 7;
 }

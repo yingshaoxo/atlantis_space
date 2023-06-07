@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:atlantis_space/store/controllers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -76,6 +79,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const MethodChannel kotlin_functions =
+      MethodChannel('my_kotlin_functions');
+
+  @override
+  void initState() {
+    super.initState();
+    () async {
+      var json_string = await kotlin_functions
+          .invokeMethod('get_all_installed_apps', <String, dynamic>{});
+      List a_list_of_app_data = jsonDecode(json_string);
+    }();
+  }
+
   @override
   Widget build(BuildContext context) {
     return My_Top_Bar(widget: widget);
