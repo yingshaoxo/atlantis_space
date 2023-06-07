@@ -1,7 +1,7 @@
 AtlantisSpace
 ===
 
-AtlantisSpace an isolated space that utilizes everything to protect your freedom to fight censorship.
+AtlantisSpace is an isolated space that utilizes everything to protect your freedom to fight censorship.
 
 <!-- Downloads
 ===
