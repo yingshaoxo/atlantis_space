@@ -7,6 +7,7 @@ import 'package:atlantis_space/store/variable_controller.dart';
 import 'package:atlantis_space/tools/string_tool.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
 void main() {
@@ -89,27 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     () async {
-      var json_string = await Variable_Controllr.kotlin_functions
-          .invokeMethod('get_all_installed_apps', <String, dynamic>{});
-      List a_list_of_app_data = jsonDecode(json_string);
-
-      variable_controller.outside_app_list.clear();
-      for (final one in a_list_of_app_data) {
-        var an_app = App_Model().from_dict(one);
-
-        if (an_app.app_id != null &&
-            an_app.app_id!.startsWith("com.android.")) {
-          continue;
-        }
-
-        if (an_app.app_name != null && an_app.app_name!.contains('.')) {
-          continue;
-        }
-
-        variable_controller.outside_app_list.add(an_app);
-      }
-
-      setState(() {});
+      await variable_controller.load_app_list(
+          load_outside_app: true, load_inside_app: true);
+      variable_controller.refresh_app_list();
     }();
   }
 
@@ -175,8 +158,9 @@ class _My_Top_BarState extends State<My_Top_Bar> {
                                         color: Colors.blue.withAlpha(200),
                                         width: 0.5))),
                             onChanged: (value) {
-                              variable_controller.search_keywords.trigger(
-                                  search_input_box_controller.text.trim());
+                              variable_controller.search_keywords =
+                                  search_input_box_controller.text.trim();
+                              variable_controller.refresh_app_list();
                             },
                           ),
                         ),
@@ -256,25 +240,34 @@ class My_Tabs extends StatefulWidget {
 class _My_TabsState extends State<My_Tabs> {
   int _selected_index = 0;
 
-  void _on_item_tapped(int index) {
+  Future<void> _on_item_tapped(int index) async {
     setState(() {
       _selected_index = index;
     });
+
+    if (index == 1) {
+      await variable_controller.load_app_list(load_inside_app: true);
+      variable_controller.refresh_app_list();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> widget_children = [
-      Outside_App_List(),
-      Icon(Icons.directions_transit),
+      Obx(() {
+        variable_controller.outside_app_list_for_view.value;
+        return Outside_App_List();
+      }),
+      Obx(() {
+        variable_controller.inside_app_list_for_view.value;
+        return Inside_App_List();
+      }),
     ];
 
     return Scaffold(
       appBar: null,
       body: My_Default_Text_Style(
-        child: Center(
-          child: widget_children.elementAt(_selected_index),
-        ),
+        child: widget_children.elementAt(_selected_index),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -308,16 +301,61 @@ class Outside_App_List extends StatefulWidget {
 class _Outside_App_ListState extends State<Outside_App_List> {
   @override
   Widget build(BuildContext context) {
-    var app_rows = variable_controller.outside_app_list
+    var app_rows = variable_controller.outside_app_list_for_view
         .map((e) => App_Information_Row(
               an_app: e,
+              is_a_local_apk_file: false,
             ))
         .toList();
-    // if (app_rows.length == 0) {
-    //   app_rows.add(App_Information_Row(
-    //     an_app: App_Model(app_name: "yingshaoxo"),
-    //   ));
-    // }
+
+    List<Widget> new_rows = [];
+    for (var i = 0; i < app_rows.length; i++) {
+      new_rows.add(app_rows[i]);
+      new_rows.add(Container(
+        height: 1,
+        width: double.maxFinite,
+        color: Colors.grey[300],
+      ));
+    }
+    if (new_rows.length >= 2) {
+      new_rows.removeLast();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: new_rows.length == 0
+            ? Center(
+                child: Text("Loading..."),
+              )
+            : Column(
+                mainAxisSize: MainAxisSize.min,
+                children: new_rows,
+              ),
+      ),
+    );
+  }
+}
+
+class Inside_App_List extends StatefulWidget {
+  const Inside_App_List({
+    super.key,
+  });
+
+  @override
+  State<Inside_App_List> createState() => _Inside_App_ListState();
+}
+
+class _Inside_App_ListState extends State<Inside_App_List> {
+  @override
+  Widget build(BuildContext context) {
+    var app_rows = variable_controller.inside_app_list_for_view
+        .map((e) => App_Information_Row(
+              an_app: e,
+              is_a_local_apk_file: true,
+            ))
+        .toList();
 
     List<Widget> new_rows = [];
     for (var i = 0; i < app_rows.length; i++) {
@@ -351,8 +389,10 @@ class _Outside_App_ListState extends State<Outside_App_List> {
 
 class App_Information_Row extends StatefulWidget {
   final App_Model an_app;
+  final bool is_a_local_apk_file;
 
-  const App_Information_Row({super.key, required this.an_app});
+  const App_Information_Row(
+      {super.key, required this.an_app, required this.is_a_local_apk_file});
 
   @override
   State<App_Information_Row> createState() => _App_Information_RowState();
@@ -383,44 +423,94 @@ class _App_Information_RowState extends State<App_Information_Row> {
               )
             ],
           ),
-          TextButton(
-              onPressed: () async {
-                if (widget.an_app.source_apk_path == null) {
-                  return;
-                }
-                if (widget.an_app.source_apk_path == "") {
-                  return;
-                }
+          Column(
+            children: [
+              if (!widget.is_a_local_apk_file) ...[
+                TextButton(
+                    onPressed: () async {
+                      if (widget.an_app.source_apk_path == null) {
+                        return;
+                      }
+                      if (widget.an_app.source_apk_path == "") {
+                        return;
+                      }
 
-                if (widget.an_app.exported_apk_path == null) {
-                  return;
-                }
-                if (widget.an_app.exported_apk_path == "") {
-                  return;
-                }
+                      if (widget.an_app.exported_apk_path == null) {
+                        return;
+                      }
+                      if (widget.an_app.exported_apk_path == "") {
+                        return;
+                      }
 
-                var file_exists =
-                    await File(widget.an_app.exported_apk_path!).exists();
-                if (!file_exists) {
-                  File file = File(widget.an_app.source_apk_path!);
-                  Uint8List bytes = file.readAsBytesSync();
-                  await File(widget.an_app.exported_apk_path!)
-                      .writeAsBytes(bytes);
-                }
+                      var file_exists =
+                          await File(widget.an_app.exported_apk_path!).exists();
+                      if (!file_exists) {
+                        File file = File(widget.an_app.source_apk_path!);
+                        Uint8List bytes = file.readAsBytesSync();
+                        await File(widget.an_app.exported_apk_path!)
+                            .writeAsBytes(bytes);
+                      }
 
-                // await Variable_Controllr.kotlin_functions.invokeMethod(
-                //     'open_a_folder', <String, dynamic>{
-                //   "path": File(widget.an_app.exported_apk_path!).parent.path
-                // });
+                      showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                                title: null,
+                                content: My_Default_Text_Style(
+                                  child: Text(
+                                      "Congraduations!\n\nApplication '${widget.an_app.app_name}' has been transfered into atlantis space."),
+                                ),
+                                actions: null);
+                          });
+                    },
+                    child: Text(
+                      "Transfer",
+                      style: TextStyle(color: Colors.blue),
+                    )),
+              ],
+              if (widget.is_a_local_apk_file) ...[
+                TextButton(
+                    onPressed: () async {
+                      if (widget.an_app.source_apk_path == null) {
+                        return;
+                      }
+                      if (widget.an_app.source_apk_path == "") {
+                        return;
+                      }
 
-                await Share.shareXFiles([
-                  XFile(widget.an_app.exported_apk_path!),
-                ], text: 'Your app apk file');
-              },
-              child: Text(
-                "Transfer",
-                style: TextStyle(color: Colors.blue),
-              ))
+                      if (widget.an_app.exported_apk_path == null) {
+                        return;
+                      }
+                      if (widget.an_app.exported_apk_path == "") {
+                        return;
+                      }
+
+                      var file_exists =
+                          await File(widget.an_app.exported_apk_path!).exists();
+                      if (!file_exists) {
+                        return;
+                      }
+
+                      try {
+                        await Variable_Controllr.kotlin_functions.invokeMethod(
+                            'open_a_folder', <String, dynamic>{
+                          "path":
+                              File(widget.an_app.exported_apk_path!).parent.path
+                        });
+                      } catch (e) {
+                        await Share.shareXFiles([
+                          XFile(widget.an_app.exported_apk_path!),
+                        ], text: 'Your app apk file');
+                      }
+                    },
+                    child: Text(
+                      "Open",
+                      style: TextStyle(color: Colors.blue),
+                    )),
+              ]
+            ],
+          )
         ],
       ),
     );

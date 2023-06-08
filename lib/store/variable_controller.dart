@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:core';
 import 'package:atlantis_space/generated_grpc/models_objects.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +22,82 @@ class Variable_Controllr extends GetxController {
 
   // app list
   List<App_Model> outside_app_list = [];
-  Rx<String> search_keywords = Rx("");
+  List<App_Model> inside_app_list = [];
+  RxList<App_Model> outside_app_list_for_view = RxList<App_Model>([]);
+  RxList<App_Model> inside_app_list_for_view = RxList<App_Model>([]);
+  String search_keywords = "";
+
+  Future<void> load_app_list(
+      {bool load_outside_app = false, bool load_inside_app = false}) async {
+    // get outside apps
+    if (load_outside_app) {
+      var json_string = await Variable_Controllr.kotlin_functions
+          .invokeMethod('get_all_installed_apps', <String, dynamic>{});
+      List a_list_of_app_data = jsonDecode(json_string);
+
+      List<App_Model> less_important_apps = [];
+      outside_app_list.clear();
+      for (final one in a_list_of_app_data) {
+        var an_app = App_Model().from_dict(one);
+
+        if (an_app.app_id != null &&
+            an_app.app_id!.startsWith("com.android.")) {
+          less_important_apps.add(an_app);
+          continue;
+        }
+
+        if (an_app.app_name != null && an_app.app_name!.contains('.')) {
+          less_important_apps.add(an_app);
+          continue;
+        }
+
+        outside_app_list.add(an_app);
+      }
+      outside_app_list.addAll(less_important_apps);
+    }
+
+    // get inside apps
+    if (load_inside_app) {
+      var json_string = await Variable_Controllr.kotlin_functions
+          .invokeMethod('get_all_saved_apps', <String, dynamic>{});
+      var a_list_of_app_data = jsonDecode(json_string);
+
+      inside_app_list.clear();
+      for (final one in a_list_of_app_data) {
+        var an_app = App_Model().from_dict(one);
+
+        inside_app_list.add(an_app);
+      }
+    }
+  }
+
+  void refresh_app_list() {
+    List<App_Model> temp_outside_app_list = [];
+    for (final one in outside_app_list) {
+      var app_name = one.app_name;
+      if (app_name == null) {
+        continue;
+      }
+      if (app_name.toLowerCase().contains(search_keywords.toLowerCase())) {
+        temp_outside_app_list.add(one);
+      }
+    }
+    outside_app_list_for_view.clear();
+    outside_app_list_for_view.addAll(temp_outside_app_list);
+
+    List<App_Model> temp_inside_app_list = [];
+    for (final one in inside_app_list) {
+      var app_name = one.app_name;
+      if (app_name == null) {
+        continue;
+      }
+      if (app_name.toLowerCase().contains(search_keywords.toLowerCase())) {
+        temp_inside_app_list.add(one);
+      }
+    }
+    inside_app_list_for_view.clear();
+    inside_app_list_for_view.addAll(temp_inside_app_list);
+  }
 
   // auth
   String? jwt;

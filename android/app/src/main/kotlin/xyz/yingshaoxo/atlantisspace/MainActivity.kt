@@ -2,17 +2,19 @@ package xyz.yingshaoxo.atlantisspace
 
 import android.content.Intent
 import android.content.pm.ApplicationInfo
+import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.net.Uri
-import android.os.Environment
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import org.json.JSONArray
+import java.nio.file.Path
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectory
 import kotlin.io.path.exists
+import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.pathString
 
 
@@ -49,22 +51,27 @@ class MainActivity: FlutterActivity() {
                 result.success(data_string)
             }
 
-//            if (call.method.contentEquals("open_a_folder")) {
-//                var path = call.argument<String>("path")
-//                if (path != null) {
-//
-//                    val selectedUri = Uri.parse(
-//                       path
-//                    )
-//                    val intent = Intent(Intent.ACTION_VIEW)
-//                    intent.setDataAndType(selectedUri, "resource/folder")
-//                    startActivity(intent)
-//
-//                    result.success("Folder opened")
-//                } else {
-//                    result.error("error", "Something went wrong", null)
-//                }
-//            }
+            if (call.method.contentEquals("get_all_saved_apps")) {
+                var data_ = get_all_saved_apps()
+                var data_string = JSONArray(data_).toString()
+                result.success(data_string)
+            }
+
+            if (call.method.contentEquals("open_a_folder")) {
+                var path = call.argument<String>("path")
+                if (path != null) {
+
+                    val selectedUri = Uri.parse( path )
+                    val intent = Intent("android.intent.action.VIEW")
+                    intent.data = selectedUri // uri of directory from FileProvider, DocumentProvider or uri with file scheme, can be empty.
+                    intent.putExtra("org.openintents.extra.ABSOLUTE_PATH", path) // String
+                    startActivity(intent)
+
+                    result.success("Folder opened")
+                } else {
+                    result.error("error", "Something went wrong", null)
+                }
+            }
         }
     }
 
@@ -103,6 +110,51 @@ class MainActivity: FlutterActivity() {
 
                 result["source_apk_path"] = app.publicSourceDir
 
+                var exported_parent_path = get_local_apk_parent_folder_path()
+                if (exported_parent_path != null) {
+                    var exported_apk_path = Path(exported_parent_path.pathString, app_name + ".apk")
+                    result["exported_apk_path"] = exported_apk_path.pathString
+                } else {
+                    result["exported_apk_path"] = ""
+                }
+
+                result_list.add(result)
+            }
+
+            return result_list
+        }
+
+        fun get_all_saved_apps(): MutableList<Map<String, String>> {
+            var result_list: MutableList<Map<String, String>> = mutableListOf()
+            var exported_apk_parent_folder = get_local_apk_parent_folder_path()
+
+            if (exported_apk_parent_folder == null) {
+                return result_list
+            }
+
+            var packageManager = Global_Variable.current_activity?.packageManager!!
+
+            val files: List<Path> = exported_apk_parent_folder.listDirectoryEntries("*.apk")
+            for (file in files) {
+                var app = get_application_info_from_apk_file(file)
+                if (app == null) {
+                    continue
+                }
+
+                var result = mutableMapOf<String, String>()
+
+                result["apk_assets_path"] = ""
+                result["app_id"] = app.packageName
+
+                var app_name = app.loadLabel(packageManager).toString()
+                result["app_name"] = app_name
+                result["app_name_end_with_dot_apk"] = app_name + ".apk"
+
+                val app_icon_data: Drawable = app.loadIcon(packageManager)
+                result["app_icon_base64_string"] = Tools.convert_drawable_to_base64(app_icon_data)
+
+                result["source_apk_path"] = app.publicSourceDir
+
                 var exported_parent_path = Global_Variable.current_activity?.getExternalFilesDir(null)?.path.toString()
                 if (exported_parent_path != null && exported_parent_path != "") {
                     val parent_folder_path = Path(exported_parent_path, "apks")
@@ -119,6 +171,33 @@ class MainActivity: FlutterActivity() {
             }
 
             return result_list
+        }
+
+        fun get_local_apk_parent_folder_path(): Path? {
+            var exported_parent_path = Global_Variable.current_activity?.getExternalFilesDir(null)?.path.toString()
+            if (exported_parent_path != null && exported_parent_path != "") {
+                val parent_folder_path = Path(exported_parent_path, "apks")
+                if (!parent_folder_path.exists()) {
+                    parent_folder_path.createDirectory()
+                }
+                return parent_folder_path
+            } else {
+                return null
+            }
+        }
+
+        fun get_application_info_from_apk_file(apk_file_path: Path) : ApplicationInfo? {
+            var packageManager = Global_Variable.current_activity?.packageManager
+            var package_info: PackageInfo? = packageManager?.getPackageArchiveInfo(apk_file_path.pathString, 0);
+
+            if (package_info != null) {
+                package_info.applicationInfo?.sourceDir       = apk_file_path.pathString;
+                package_info.applicationInfo?.publicSourceDir = apk_file_path.pathString;
+                //app_icon_data = package_info.applicationInfo?.loadIcon(packageManager);
+                return package_info.applicationInfo
+            } else {
+                return null
+            }
         }
 
         /*
