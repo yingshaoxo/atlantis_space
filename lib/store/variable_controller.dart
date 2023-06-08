@@ -1,5 +1,6 @@
 import 'dart:core';
 import 'package:atlantis_space/generated_grpc/models_objects.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,6 +15,9 @@ class Local_Storage_Keys {
 
 class Variable_Controllr extends GetxController {
   SharedPreferences? preferences;
+
+  static const MethodChannel kotlin_functions =
+      MethodChannel('my_kotlin_functions');
 
   // app list
   List<App_Model> outside_app_list = [];

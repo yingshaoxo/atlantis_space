@@ -1,18 +1,20 @@
 package xyz.yingshaoxo.atlantisspace
 
+import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
-
+import android.net.Uri
+import android.os.Environment
+import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
-import io.flutter.embedding.android.FlutterActivity
 import org.json.JSONArray
-import org.json.JSONObject
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectory
 import kotlin.io.path.exists
 import kotlin.io.path.pathString
+
 
 class MainActivity: FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
@@ -46,6 +48,23 @@ class MainActivity: FlutterActivity() {
                 var data_string = JSONArray(data_).toString()
                 result.success(data_string)
             }
+
+//            if (call.method.contentEquals("open_a_folder")) {
+//                var path = call.argument<String>("path")
+//                if (path != null) {
+//
+//                    val selectedUri = Uri.parse(
+//                       path
+//                    )
+//                    val intent = Intent(Intent.ACTION_VIEW)
+//                    intent.setDataAndType(selectedUri, "resource/folder")
+//                    startActivity(intent)
+//
+//                    result.success("Folder opened")
+//                } else {
+//                    result.error("error", "Something went wrong", null)
+//                }
+//            }
         }
     }
 

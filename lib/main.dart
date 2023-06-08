@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:atlantis_space/generated_grpc/models_objects.dart';
 import 'package:atlantis_space/store/controllers.dart';
+import 'package:atlantis_space/store/variable_controller.dart';
 import 'package:atlantis_space/tools/string_tool.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 
 void main() {
   runApp(const MyApp());
@@ -81,15 +84,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const MethodChannel kotlin_functions =
-      MethodChannel('my_kotlin_functions');
-
   @override
   void initState() {
     super.initState();
 
     () async {
-      var json_string = await kotlin_functions
+      var json_string = await Variable_Controllr.kotlin_functions
           .invokeMethod('get_all_installed_apps', <String, dynamic>{});
       List a_list_of_app_data = jsonDecode(json_string);
 
@@ -384,9 +384,41 @@ class _App_Information_RowState extends State<App_Information_Row> {
             ],
           ),
           TextButton(
-              onPressed: () async {},
+              onPressed: () async {
+                if (widget.an_app.source_apk_path == null) {
+                  return;
+                }
+                if (widget.an_app.source_apk_path == "") {
+                  return;
+                }
+
+                if (widget.an_app.exported_apk_path == null) {
+                  return;
+                }
+                if (widget.an_app.exported_apk_path == "") {
+                  return;
+                }
+
+                var file_exists =
+                    await File(widget.an_app.exported_apk_path!).exists();
+                if (!file_exists) {
+                  File file = File(widget.an_app.source_apk_path!);
+                  Uint8List bytes = file.readAsBytesSync();
+                  await File(widget.an_app.exported_apk_path!)
+                      .writeAsBytes(bytes);
+                }
+
+                // await Variable_Controllr.kotlin_functions.invokeMethod(
+                //     'open_a_folder', <String, dynamic>{
+                //   "path": File(widget.an_app.exported_apk_path!).parent.path
+                // });
+
+                await Share.shareXFiles([
+                  XFile(widget.an_app.exported_apk_path!),
+                ], text: 'Your app apk file');
+              },
               child: Text(
-                "Install",
+                "Transfer",
                 style: TextStyle(color: Colors.blue),
               ))
         ],
