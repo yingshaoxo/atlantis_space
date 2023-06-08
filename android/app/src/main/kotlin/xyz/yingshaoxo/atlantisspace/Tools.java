@@ -19,9 +19,9 @@ public class Tools {
         an_image.draw(canvas);
 
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteStream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteStream);
         byte[] byteArray = byteStream.toByteArray();
         String baseString = Base64.encodeToString(byteArray,Base64.DEFAULT);
-        return baseString;
+        return baseString.trim();
     }
 }

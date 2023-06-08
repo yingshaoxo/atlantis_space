@@ -44,8 +44,7 @@ class MainActivity: FlutterActivity() {
             if (call.method.contentEquals("get_all_installed_apps")) {
                 var data_ = get_all_installed_apps()
                 var data_string = JSONArray(data_).toString()
-                //result.success(data_string)
-                result.success("SB Flutter Native Plugin")
+                result.success(data_string)
             }
         }
     }
