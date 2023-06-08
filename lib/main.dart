@@ -423,7 +423,7 @@ class _App_Information_RowState extends State<App_Information_Row> {
               )
             ],
           ),
-          Column(
+          Row(
             children: [
               if (!widget.is_a_local_apk_file) ...[
                 TextButton(
@@ -470,6 +470,45 @@ class _App_Information_RowState extends State<App_Information_Row> {
                     )),
               ],
               if (widget.is_a_local_apk_file) ...[
+                TextButton(
+                    onPressed: () async {
+                      if (widget.an_app.exported_apk_path == null) {
+                        return;
+                      }
+                      if (widget.an_app.exported_apk_path == "") {
+                        return;
+                      }
+
+                      var file_exists =
+                          await File(widget.an_app.exported_apk_path!).exists();
+                      if (!file_exists) {
+                        return;
+                      }
+
+                      await File(widget.an_app.exported_apk_path!).delete();
+
+                      await variable_controller.load_app_list(
+                          load_inside_app: true);
+                      variable_controller.refresh_app_list();
+
+                      showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                                title: null,
+                                content: My_Default_Text_Style(
+                                  child: Text(
+                                    "App '${widget.an_app.app_name}' is removed from atlantis space.",
+                                  ),
+                                ),
+                                actions: null);
+                          });
+                    },
+                    child: Text(
+                      "Remove",
+                      style: TextStyle(color: Colors.grey[100]),
+                    )),
                 TextButton(
                     onPressed: () async {
                       if (widget.an_app.source_apk_path == null) {
