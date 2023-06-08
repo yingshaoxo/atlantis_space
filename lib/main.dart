@@ -326,8 +326,11 @@ class _Outside_App_ListState extends State<Outside_App_List> {
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: new_rows.length == 0
-            ? Center(
-                child: Text("Loading..."),
+            ? Container(
+                height: MediaQuery.of(context).size.height * 0.8,
+                child: Center(
+                  child: Text("Loading..."),
+                ),
               )
             : Column(
                 mainAxisSize: MainAxisSize.min,
@@ -375,8 +378,11 @@ class _Inside_App_ListState extends State<Inside_App_List> {
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: new_rows.length == 0
-            ? Center(
-                child: Text("Loading..."),
+            ? Container(
+                height: MediaQuery.of(context).size.height * 0.8,
+                child: Center(
+                  child: Text("Nothing in here yet..."),
+                ),
               )
             : Column(
                 mainAxisSize: MainAxisSize.min,
