@@ -426,7 +426,11 @@ class _App_Information_RowState extends State<App_Information_Row> {
                               .replaceAll(RegExp(r'\s'), '')))),
               Padding(
                 padding: const EdgeInsets.only(left: 16),
-                child: Text(get_sub_string(widget.an_app.app_name ?? "", 0, 45,
+                child: Text(get_sub_string(
+                    variable_controller.get_displayable_app_name(
+                        widget.an_app.app_name_end_with_dot_apk ?? ""),
+                    0,
+                    45,
                     add_dots: true)),
               )
             ],

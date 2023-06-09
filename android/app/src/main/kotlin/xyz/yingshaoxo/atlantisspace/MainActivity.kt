@@ -111,7 +111,9 @@ class MainActivity: FlutterActivity() {
 
                 var app_name = app.loadLabel(packageManager).toString()
                 result["app_name"] = app_name
-                result["app_name_end_with_dot_apk"] = app_name + ".apk"
+
+                var app_name_end_with_dot_apk = app_name + ".apk"
+                result["app_name_end_with_dot_apk"] = app_name_end_with_dot_apk
 
                 val app_icon_data: Drawable = app.loadIcon(packageManager)
                 result["app_icon_base64_string"] = Tools.convert_drawable_to_base64(app_icon_data)
@@ -120,7 +122,7 @@ class MainActivity: FlutterActivity() {
 
                 var exported_parent_path = get_local_apk_parent_folder_path()
                 if (exported_parent_path != null) {
-                    var exported_apk_path = Path(exported_parent_path.pathString, app_name + ".apk")
+                    var exported_apk_path = Path(exported_parent_path.pathString, app_name_end_with_dot_apk)
                     result["exported_apk_path"] = exported_apk_path.pathString
                 } else {
                     result["exported_apk_path"] = ""
@@ -156,7 +158,9 @@ class MainActivity: FlutterActivity() {
 
                 var app_name = app.loadLabel(packageManager).toString()
                 result["app_name"] = app_name
-                result["app_name_end_with_dot_apk"] = app_name + ".apk"
+
+                var app_name_end_with_dot_apk = file.pathString.split("/").last()
+                result["app_name_end_with_dot_apk"] = app_name_end_with_dot_apk
 
                 val app_icon_data: Drawable = app.loadIcon(packageManager)
                 result["app_icon_base64_string"] = Tools.convert_drawable_to_base64(app_icon_data)
@@ -169,7 +173,7 @@ class MainActivity: FlutterActivity() {
                     if (!parent_folder_path.exists()) {
                         parent_folder_path.createDirectory()
                     }
-                    exported_parent_path = Path(parent_folder_path.pathString, app_name + ".apk").pathString
+                    exported_parent_path = Path(parent_folder_path.pathString, app_name_end_with_dot_apk).pathString
                     result["exported_apk_path"] = exported_parent_path
                 } else {
                     result["exported_apk_path"] = ""
