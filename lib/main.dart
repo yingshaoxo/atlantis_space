@@ -90,6 +90,8 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     () async {
+      await variable_controller.release_built_in_apk_files(context);
+
       await variable_controller.load_app_list(
           load_outside_app: true, load_inside_app: true);
       variable_controller.refresh_app_list();

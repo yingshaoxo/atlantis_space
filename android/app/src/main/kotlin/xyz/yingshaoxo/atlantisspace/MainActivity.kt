@@ -72,6 +72,15 @@ class MainActivity: FlutterActivity() {
                     result.error("error", "Something went wrong", null)
                 }
             }
+
+            if (call.method.contentEquals("get_local_apk_parent_folder_path")) {
+                var exported_apk_parent_folder = get_local_apk_parent_folder_path()
+                if (exported_apk_parent_folder == null) {
+                    result.success("")
+                } else {
+                    result.success(exported_apk_parent_folder.pathString)
+                }
+            }
         }
     }
 
@@ -92,7 +101,6 @@ class MainActivity: FlutterActivity() {
             var a_list: MutableList<ApplicationInfo> = mutableListOf()
             var packageManager = Global_Variable.current_activity?.packageManager
             a_list = packageManager?.getInstalledApplications(PackageManager.GET_META_DATA) as MutableList<ApplicationInfo>
-
 
             var result_list: MutableList<Map<String, String>> = mutableListOf()
             for (app in a_list) {

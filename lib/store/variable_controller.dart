@@ -1,8 +1,11 @@
 import 'dart:convert';
 import 'dart:core';
+import 'dart:io';
 import 'package:atlantis_space/generated_grpc/models_objects.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart' as path;
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -97,6 +100,128 @@ class Variable_Controllr extends GetxController {
     }
     inside_app_list_for_view.clear();
     inside_app_list_for_view.addAll(temp_inside_app_list);
+  }
+
+  /*
+  Future<void> _init_apk_file_list() async {
+    in_loading = true;
+    setState(() {});
+
+    final manifestContent =
+        await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
+
+    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+
+    List<String> apk_file_list = manifestMap.keys
+        .where((String key) => key.contains('apks/'))
+        .where((String key) => key.contains('.apk'))
+        .toList();
+
+    variable_controller.app_list = [];
+    for (final apk_asset_path in apk_file_list) {
+      var an_app = App_Model(
+        apk_assets_path: apk_asset_path,
+        app_name: _get_pure_app_name_from_asset_path(apk_asset_path),
+        app_name_end_with_dot_apk: _get_app_name_end_with_apk(apk_asset_path),
+      );
+
+      an_app.exported_apk_path =
+          await _get_target_apk_path(an_app.app_name_end_with_dot_apk);
+
+      variable_controller.app_list.add(an_app);
+    }
+
+    for (final an_app in variable_controller.app_list) {
+      if (an_app.exported_apk_path == null || an_app.exported_apk_path == "") {
+        continue;
+      }
+
+      if (an_app.apk_assets_path == null || an_app.exported_apk_path == "") {
+        continue;
+      }
+
+      var file_exists = await File(an_app.exported_apk_path!).exists();
+      if (!file_exists) {
+        ByteData data = await rootBundle.load(an_app.apk_assets_path!);
+        List<int> bytes =
+            data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+        await File(an_app.exported_apk_path!).writeAsBytes(bytes);
+      }
+    }
+
+    in_loading = false;
+  }
+
+  String _get_pure_app_name_from_asset_path(String path) {
+    try {
+      var name = path.split("/").last.split(".").first;
+      return name[0].toUpperCase() + name.substring(1, name.length);
+    } catch (e) {
+      return "";
+    }
+  }
+
+  Future<String?> _get_target_apk_path(
+      String? app_name_end_with_dot_apk) async {
+    Directory? directory = await path_provider.getExternalStorageDirectory();
+    // /storage/emulated/0/Android/data/xyz.yingshaoxo.atlantis/files
+    if (directory == null) {
+      return null;
+    }
+
+    if (app_name_end_with_dot_apk == null || app_name_end_with_dot_apk == "") {
+      return null;
+    }
+
+    var target_saving_path =
+        path_.join(directory.absolute.path, app_name_end_with_dot_apk);
+
+    return target_saving_path;
+  }
+  */
+
+  String _get_app_name_end_with_apk(String path) {
+    var name_end_with_apk = path.split('/').last;
+    return name_end_with_apk;
+  }
+
+  Future<String?> _get_local_apk_parent_folder_path() async {
+    var data_ = await Variable_Controllr.kotlin_functions
+        .invokeMethod('get_local_apk_parent_folder_path', <String, dynamic>{});
+    if (data_ == "") {
+      return null;
+    } else {
+      return data_;
+    }
+  }
+
+  Future<void> release_built_in_apk_files(BuildContext context) async {
+    final manifestContent =
+        await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
+
+    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+
+    List<String> apk_file_list = manifestMap.keys
+        .where((String key) => key.contains('apks/'))
+        .where((String key) => key.contains('.apk'))
+        .toList();
+
+    String? local_apk_parent_folder = await _get_local_apk_parent_folder_path();
+    if (local_apk_parent_folder == null) {
+      return;
+    }
+
+    for (final apk_asset_path in apk_file_list) {
+      var apk_file_name = _get_app_name_end_with_apk(apk_asset_path);
+      var target_apk_path =
+          File(path.join(local_apk_parent_folder, apk_file_name));
+      if (!target_apk_path.existsSync()) {
+        ByteData data = await rootBundle.load(apk_asset_path);
+        List<int> bytes =
+            data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+        await File(target_apk_path.path).writeAsBytes(bytes);
+      }
+    }
   }
 
   // auth
