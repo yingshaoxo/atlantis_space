@@ -203,12 +203,25 @@ class _My_Top_BarState extends State<My_Top_Bar> {
                 return [
                   PopupMenuItem<int>(
                     value: 0,
+                    child: My_Default_Text_Style(
+                        child: Text("Save all backup apks")),
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
                     child: My_Default_Text_Style(child: Text("About")),
                   ),
                 ];
               },
-              onSelected: (value) {
+              onSelected: (value) async {
                 if (value == 0) {
+                  await Share.shareXFiles(
+                      variable_controller.inside_app_list
+                          .where((element) => element.exported_apk_path != null)
+                          .where((element) => element.exported_apk_path! != "")
+                          .map((e) => XFile(e.exported_apk_path!))
+                          .toList(),
+                      text: 'Your app apk file');
+                } else if (value == 1) {
                   showDialog(
                       context: context,
                       barrierDismissible: true,
