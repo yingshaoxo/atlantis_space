@@ -348,7 +348,7 @@ class _Outside_App_ListState extends State<Outside_App_List> {
                 ),
               )
             : Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
                 children: new_rows,
               ),
       ),
@@ -380,7 +380,7 @@ class _Inside_App_ListState extends State<Inside_App_List> {
       new_rows.add(app_rows[i]);
       new_rows.add(Container(
         height: 1,
-        width: double.maxFinite,
+        //width: double.maxFinite,
         color: Colors.grey[300],
       ));
     }
@@ -399,9 +399,11 @@ class _Inside_App_ListState extends State<Inside_App_List> {
                   child: Text("Nothing in here yet..."),
                 ),
               )
-            : Column(
-                mainAxisSize: MainAxisSize.min,
-                children: new_rows,
+            : Container(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: new_rows,
+                ),
               ),
       ),
     );
@@ -422,31 +424,36 @@ class App_Information_Row extends StatefulWidget {
 class _App_Information_RowState extends State<App_Information_Row> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 60,
+      //width: MediaQuery.of(context).size.width * 1.0,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              SizedBox(
-                  width: 40,
-                  child: widget.an_app.app_icon_base64_string == null
-                      ? Container()
-                      : Image.memory(base64Decode(
-                          (widget.an_app.app_icon_base64_string ?? "")
-                              .replaceAll(RegExp(r'\s'), '')))),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Text(get_sub_string(
-                    variable_controller.get_displayable_app_name(
-                        widget.an_app.app_name_end_with_dot_apk ?? ""),
-                    0,
-                    45,
-                    add_dots: true)),
-              )
-            ],
+          Expanded(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(
+                      width: 40,
+                      child: widget.an_app.app_icon_base64_string == null
+                          ? Container()
+                          : Image.memory(base64Decode(
+                              (widget.an_app.app_icon_base64_string ?? "")
+                                  .replaceAll(RegExp(r'\s'), '')))),
+                  Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: Text(
+                        variable_controller.get_displayable_app_name(
+                            widget.an_app.app_name_end_with_dot_apk ?? ""),
+                      ))
+                ],
+              ),
+            ),
           ),
           Row(
             children: [

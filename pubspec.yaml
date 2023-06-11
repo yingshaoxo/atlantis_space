@@ -15,6 +15,7 @@ dependencies:
   path_provider: ^2.0.15
   shared_preferences: ^2.1.1
   share_plus: ^7.0.2
+  #auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
