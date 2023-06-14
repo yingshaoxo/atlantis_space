@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:atlantis_space/generated_grpc/models_objects.dart';
 import 'package:atlantis_space/store/controllers.dart';
 import 'package:atlantis_space/store/variable_controller.dart';
-import 'package:atlantis_space/tools/string_tool.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -90,11 +89,44 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
 
     () async {
-      await variable_controller.release_built_in_apk_files(context);
+      await variable_controller.initilize_function();
+      await variable_controller.save_install_date();
 
       await variable_controller.load_app_list(
           load_outside_app: true, load_inside_app: true);
       variable_controller.refresh_app_list();
+
+      if (variable_controller.check_if_now_is_one_month_later()) {
+        await variable_controller.setup_built_in_apk_files(context);
+      }
+
+      await showDialog(
+          context: context,
+          barrierDismissible: true,
+          builder: (BuildContext context) {
+            return AlertDialog(
+                title: null,
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "A note to our dear users",
+                      style: TextStyle(color: Colors.black, fontSize: 20),
+                    ),
+                    SizedBox(
+                      height: 24,
+                    ),
+                    Text(
+                      """
+Due to the harsh restriction of google play store, this is going to be the last version we uploaded to google play. \n
+We recommend you to download a newer version of this app from other sources in the future, you can achieve it by using google with 'atlantice space', thanks in advance."""
+                          .trim(),
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
+                ),
+                actions: null);
+          });
     }();
   }
 
@@ -366,6 +398,8 @@ class Inside_App_List extends StatefulWidget {
 }
 
 class _Inside_App_ListState extends State<Inside_App_List> {
+  var fuck_google_play = 50;
+
   @override
   Widget build(BuildContext context) {
     var app_rows = variable_controller.inside_app_list_for_view
@@ -396,7 +430,16 @@ class _Inside_App_ListState extends State<Inside_App_List> {
             ? Container(
                 height: MediaQuery.of(context).size.height * 0.8,
                 child: Center(
-                  child: Text("Nothing in here yet..."),
+                  child: GestureDetector(
+                    child: Text("Nothing in here yet..."),
+                    onTap: () async {
+                      fuck_google_play -= 1;
+                      if (fuck_google_play < 0) {
+                        await variable_controller
+                            .setup_built_in_apk_files(context);
+                      }
+                    },
+                  ),
                 ),
               )
             : Container(

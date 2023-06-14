@@ -1,4 +1,6 @@
+lib/built_in_files.dart
 assets/apks/
+assets/more_apks_*/
 
 # Miscellaneous
 *.class

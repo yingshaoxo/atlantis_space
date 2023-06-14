@@ -3,7 +3,7 @@
 import os, re
 from auto_everything.python import Python
 from auto_everything.terminal import Terminal
-from auto_everything.disk import Disk
+from auto_everything.disk import Disk, Dart_File_Hard_Encoder_And_Decoder
 from auto_everything.develop import YRPC
 from auto_everything.io import IO
 
@@ -14,6 +14,7 @@ t = Terminal(debug=True)
 disk = Disk()
 yrpc = YRPC()
 io_ = IO()
+dart_file_hard_encoder_and_decoder = Dart_File_Hard_Encoder_And_Decoder()
 
 def itIsWindows():
     if os.name == 'nt':
@@ -34,6 +35,9 @@ class Tools():
             input_files=["models.proto"],
             output_folder=the_generated_grpc_folder,
         )
+
+    def import_built_in_files(self):
+        dart_file_hard_encoder_and_decoder.generate(source_folder="assets/more_apks", generated_file_path="lib/built_in_files.dart")
 
 
 py.fire(Tools)

@@ -72,3 +72,51 @@ class App_Model {
     );
   }
 }
+
+
+class _Key_string_dict_for_File_Model {
+  final String is_folder = "is_folder";
+  final String relative_path = "relative_path";
+  final String base64_content = "base64_content";
+}
+
+class File_Model {
+  bool? is_folder;
+  String? relative_path;
+  String? base64_content;
+
+  File_Model({this.is_folder, this.relative_path, this.base64_content});
+
+  final Map<String, dynamic> _property_name_to_its_type_dict = {
+    "is_folder": bool,
+    "relative_path": String,
+    "base64_content": String,
+  };
+
+  final _key_string_dict_for_File_Model =
+      _Key_string_dict_for_File_Model();
+
+  Map<String, dynamic> to_dict() {
+    return {
+      'is_folder': this.is_folder,
+      'relative_path': this.relative_path,
+      'base64_content': this.base64_content,
+    };
+  }
+
+  File_Model from_dict(Map<String, dynamic>? json) {
+    if (json == null) {
+      return File_Model();
+    }
+
+    this.is_folder = json['is_folder'];
+    this.relative_path = json['relative_path'];
+    this.base64_content = json['base64_content'];
+
+    return File_Model(
+      is_folder: json['is_folder'],
+      relative_path: json['relative_path'],
+      base64_content: json['base64_content'],
+    );
+  }
+}

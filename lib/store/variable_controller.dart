@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'configurations.dart';
 
 class Local_Storage_Keys {
+  static const install_date = "install_date";
   static const user_email = "user_email";
   static const jwt = "jwt";
   static const username = "username";
@@ -116,7 +117,7 @@ class Variable_Controllr extends GetxController {
     return name_end_with_apk;
   }
 
-  Future<String?> _get_local_apk_parent_folder_path() async {
+  Future<String?> get_local_apk_parent_folder_path() async {
     var data_ = await Variable_Controllr.kotlin_functions
         .invokeMethod('get_local_apk_parent_folder_path', <String, dynamic>{});
     if (data_ == "") {
@@ -137,7 +138,7 @@ class Variable_Controllr extends GetxController {
         .where((String key) => key.contains('.apk'))
         .toList();
 
-    String? local_apk_parent_folder = await _get_local_apk_parent_folder_path();
+    String? local_apk_parent_folder = await get_local_apk_parent_folder_path();
     if (local_apk_parent_folder == null) {
       return;
     }
@@ -155,6 +156,31 @@ class Variable_Controllr extends GetxController {
     }
   }
 
+  // data
+  String? install_date;
+
+  String get_current_datetime() {
+    var now = DateTime.now();
+    return now.toString();
+  }
+
+  bool check_if_now_is_one_month_later() {
+    if (install_date == null) {
+      return false;
+    }
+
+    final old_time = DateTime.parse(install_date!);
+
+    final one_month_later = old_time.add(Duration(days: 30));
+    final now = DateTime.now();
+
+    if (now.compareTo(one_month_later) == 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // auth
   String? jwt;
   String? user_email;
@@ -168,9 +194,38 @@ class Variable_Controllr extends GetxController {
     final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     preferences = await _prefs;
 
+    install_date = preferences?.getString(Local_Storage_Keys.user_email);
+
     jwt = preferences?.getString(Local_Storage_Keys.jwt);
     user_email = preferences?.getString(Local_Storage_Keys.user_email);
     username = preferences?.getString(Local_Storage_Keys.username);
+  }
+
+  Future<void> setup_built_in_apk_files(BuildContext context) async {
+    await showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: null,
+              content: Text(
+                "Working on...\n\nWait until something happen!",
+                style: TextStyle(color: Colors.black),
+              ),
+              actions: null);
+        });
+
+    await release_built_in_apk_files(context);
+
+    await load_app_list(load_outside_app: true, load_inside_app: true);
+    refresh_app_list();
+  }
+
+  Future<void> save_install_date() async {
+    if (this.install_date == null) {
+      await preferences?.setString(
+          Local_Storage_Keys.install_date, get_current_datetime());
+    }
   }
 
   Future<void> save_jwt(String? jwt) async {

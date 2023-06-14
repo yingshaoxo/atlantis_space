@@ -9,3 +9,9 @@ message App_Model {
     string source_apk_path = 6;
     string exported_apk_path = 7;
 }
+
+message File_Model {
+    bool is_folder = 1;
+    string relative_path = 2;
+    string base64_content = 3;
+}
