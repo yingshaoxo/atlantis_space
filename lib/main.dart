@@ -6,8 +6,10 @@ import 'package:atlantis_space/store/controllers.dart';
 import 'package:atlantis_space/store/variable_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -119,7 +121,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Text(
                       """
 Due to the harsh restriction of google play store, this is going to be the last version we uploaded to google play. \n
-We recommend you to download a newer version of this app from other sources in the future, you can achieve it by using google with 'atlantice space', thanks in advance."""
+We recommend you to download a newer version from other sources in the future, you can achieve it by using google with 'atlantice space', thanks in advance."""
                           .trim(),
                       style: TextStyle(color: Colors.black),
                     ),
@@ -430,15 +432,151 @@ class _Inside_App_ListState extends State<Inside_App_List> {
             ? Container(
                 height: MediaQuery.of(context).size.height * 0.8,
                 child: Center(
-                  child: GestureDetector(
-                    child: Text("Nothing in here yet..."),
-                    onTap: () async {
-                      fuck_google_play -= 1;
-                      if (fuck_google_play < 0) {
-                        await variable_controller
-                            .setup_built_in_apk_files(context);
-                      }
-                    },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      GestureDetector(
+                        child: Text("Nothing in here yet..."),
+                        onTap: () async {
+                          fuck_google_play -= 1;
+                          if (fuck_google_play < 0) {
+                            await variable_controller
+                                .setup_built_in_apk_files(context);
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        child: Text(
+                          "Add something from Google Play?",
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                        onTap: () async {
+                          await showDialog(
+                              context: context,
+                              barrierDismissible: true,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                    title: Text(
+                                      "Click the following to install them from Google Play",
+                                      style: TextStyle(
+                                          color: Colors.grey[600],
+                                          fontSize: 16),
+                                    ),
+                                    content: My_Default_Text_Style(
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.vertical,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name: "Cx File Explorer",
+                                              app_id:
+                                                  "com.cxinventor.file.explorer",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name: "Via Browser",
+                                              app_id: "mark.via.gp",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name: "LibreTorrent",
+                                              app_id:
+                                                  "org.proninyaroslav.libretorrent",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name:
+                                                  "ZArchiver (Uncompression)",
+                                              app_id: "ru.zdevs.zarchiver",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name: "ReadEra (PDF reader)",
+                                              app_id: "org.readera",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name:
+                                                  "VirtualXposed (Support Android <= 11)",
+                                              app_id: "org.readera",
+                                              copy_only_url:
+                                                  "https://f-droid.org/en/packages/io.va.exposed/#:~:text=launcher.permission.READ_SETTINGS-,com.huawei.android.launcher.permission.CHANGE_BADGE,-Download%20APK%207",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name:
+                                                  "Send Anywhere (File Transfer)",
+                                              app_id:
+                                                  "com.estmob.android.sendanywhere",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name: "Simple HTTP Server",
+                                              app_id: "com.phlox.simpleserver",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name:
+                                                  "Pydroid 3 (IDE for Python)",
+                                              app_id: "ru.iiec.pydroid3",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name: "Root Explorer",
+                                              app_id:
+                                                  "com.speedsoftware.rootexplorer",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name:
+                                                  "Lemuroid (NES Emulator)",
+                                              app_id: "com.swordfish.lemuroid",
+                                            ),
+                                            SizedBox(
+                                              height: 20,
+                                            ),
+                                            One_Recommanded_Google_Play_App(
+                                              app_name:
+                                                  "FreeBrowser (Built-in VPN)",
+                                              app_id:
+                                                  "org.greatfire.freebrowser",
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    actions: null);
+                              });
+                        },
+                      )
+                    ],
                   ),
                 ),
               )
@@ -449,6 +587,64 @@ class _Inside_App_ListState extends State<Inside_App_List> {
                 ),
               ),
       ),
+    );
+  }
+}
+
+class One_Recommanded_Google_Play_App extends StatefulWidget {
+  final String app_name;
+  final String app_id;
+  final String? copy_only_url;
+
+  const One_Recommanded_Google_Play_App({
+    super.key,
+    required this.app_name,
+    required this.app_id,
+    this.copy_only_url,
+  });
+
+  @override
+  State<One_Recommanded_Google_Play_App> createState() =>
+      _One_Recommanded_Google_Play_AppState();
+}
+
+class _One_Recommanded_Google_Play_AppState
+    extends State<One_Recommanded_Google_Play_App> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Text(
+        widget.app_name,
+        style: TextStyle(color: Colors.blue),
+      ),
+      onTap: () async {
+        if (widget.copy_only_url != null && widget.copy_only_url!.isNotEmpty) {
+          await Clipboard.setData(
+              ClipboardData(text: widget.copy_only_url ?? ""));
+          Fluttertoast.showToast(
+              msg: "'${widget.app_name}' url got copied into clipboard",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.black54,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        } else {
+          await Clipboard.setData(ClipboardData(text: widget.app_name));
+          Fluttertoast.showToast(
+              msg: "'${widget.app_name}' got copied into clipboard",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.black54,
+              textColor: Colors.white,
+              fontSize: 16.0);
+
+          final Uri _url = Uri.parse(
+              'https://play.google.com/store/apps/details?id=${widget.app_id}');
+          await launchUrl(_url);
+        }
+      },
     );
   }
 }
