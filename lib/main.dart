@@ -256,7 +256,7 @@ class _My_Top_BarState extends State<My_Top_Bar> {
                           .toList(),
                       text: 'Your app apk file');
                 } else if (value == 1) {
-                  showDialog(
+                  await showDialog(
                       context: context,
                       barrierDismissible: true,
                       builder: (BuildContext context) {
@@ -722,7 +722,7 @@ class _App_Information_RowState extends State<App_Information_Row> {
                             .writeAsBytes(bytes);
                       }
 
-                      showDialog(
+                      await showDialog(
                           context: context,
                           barrierDismissible: true,
                           builder: (BuildContext context) {
@@ -762,7 +762,7 @@ class _App_Information_RowState extends State<App_Information_Row> {
                           load_inside_app: true);
                       variable_controller.refresh_app_list();
 
-                      showDialog(
+                      await showDialog(
                           context: context,
                           barrierDismissible: true,
                           builder: (BuildContext context) {

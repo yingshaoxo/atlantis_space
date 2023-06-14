@@ -202,7 +202,7 @@ class Variable_Controllr extends GetxController {
   }
 
   Future<void> setup_built_in_apk_files(BuildContext context) async {
-    await showDialog(
+    showDialog(
         context: context,
         barrierDismissible: true,
         builder: (BuildContext context) {
