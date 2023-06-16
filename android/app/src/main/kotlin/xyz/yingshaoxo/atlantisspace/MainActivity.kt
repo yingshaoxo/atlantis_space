@@ -17,6 +17,7 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import org.json.JSONArray
+import xyz.yingshaoxo.atlantis_space.BuildConfig
 import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.Path
