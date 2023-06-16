@@ -103,6 +103,14 @@ class Variable_Controllr extends GetxController {
     inside_app_list_for_view.addAll(temp_inside_app_list);
   }
 
+  Future<void> install_an_apk_file(String? apk_file_path) async {
+    if (apk_file_path == null) {
+      return;
+    }
+    await Variable_Controllr.kotlin_functions.invokeMethod(
+        'install_apk_file', <String, dynamic>{"apk_path": apk_file_path});
+  }
+
   String get_displayable_app_name(String name_end_with_apk) {
     try {
       var name = name_end_with_apk.split(".").first;
@@ -202,18 +210,18 @@ class Variable_Controllr extends GetxController {
   }
 
   Future<void> setup_built_in_apk_files(BuildContext context) async {
-    showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return AlertDialog(
-              title: null,
-              content: Text(
-                "Working on...\n\nWait until something happen!",
-                style: TextStyle(color: Colors.black),
-              ),
-              actions: null);
-        });
+    // showDialog(
+    //     context: context,
+    //     barrierDismissible: true,
+    //     builder: (BuildContext context) {
+    //       return AlertDialog(
+    //           title: null,
+    //           content: Text(
+    //             "Working on...\n\nWait until something happen!",
+    //             style: TextStyle(color: Colors.black),
+    //           ),
+    //           actions: null);
+    //     });
 
     await release_built_in_apk_files(context);
 

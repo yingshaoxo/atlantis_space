@@ -94,41 +94,39 @@ class _MyHomePageState extends State<MyHomePage> {
       await variable_controller.initilize_function();
       await variable_controller.save_install_date();
 
-      await variable_controller.load_app_list(
-          load_outside_app: true, load_inside_app: true);
-      variable_controller.refresh_app_list();
+      // if (variable_controller.check_if_now_is_one_month_later()) {
+      //   await variable_controller.setup_built_in_apk_files(context);
+      // }
 
-      if (variable_controller.check_if_now_is_one_month_later()) {
-        await variable_controller.setup_built_in_apk_files(context);
-      }
+      await variable_controller.setup_built_in_apk_files(context);
 
-      await showDialog(
-          context: context,
-          barrierDismissible: true,
-          builder: (BuildContext context) {
-            return AlertDialog(
-                title: null,
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "A note to our dear users",
-                      style: TextStyle(color: Colors.black, fontSize: 20),
-                    ),
-                    SizedBox(
-                      height: 24,
-                    ),
-                    Text(
-                      """
-Due to the harsh restriction of google play store, this is going to be the last version we uploaded to google play. \n
-We recommend you to download a newer version from other sources in the future, you can achieve it by using google with 'atlantice space', thanks in advance."""
-                          .trim(),
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ],
-                ),
-                actions: null);
-          });
+//       await showDialog(
+//           context: context,
+//           barrierDismissible: true,
+//           builder: (BuildContext context) {
+//             return AlertDialog(
+//                 title: null,
+//                 content: Column(
+//                   mainAxisSize: MainAxisSize.min,
+//                   children: [
+//                     Text(
+//                       "A note to our dear users",
+//                       style: TextStyle(color: Colors.black, fontSize: 20),
+//                     ),
+//                     SizedBox(
+//                       height: 24,
+//                     ),
+//                     Text(
+//                       """
+// Due to the harsh restriction of google play store, this is going to be the last version we uploaded to google play. \n
+// We recommend you to download a newer version from other sources in the future, you can achieve it by using google with 'atlantice space', thanks in advance."""
+//                           .trim(),
+//                       style: TextStyle(color: Colors.black),
+//                     ),
+//                   ],
+//                 ),
+//                 actions: null);
+//           });
     }();
   }
 
@@ -815,7 +813,36 @@ class _App_Information_RowState extends State<App_Information_Row> {
                       }
                     },
                     child: Text(
-                      "Open",
+                      "Save",
+                      style: TextStyle(color: Colors.greenAccent[100]),
+                    )),
+                TextButton(
+                    onPressed: () async {
+                      if (widget.an_app.source_apk_path == null) {
+                        return;
+                      }
+                      if (widget.an_app.source_apk_path == "") {
+                        return;
+                      }
+
+                      if (widget.an_app.exported_apk_path == null) {
+                        return;
+                      }
+                      if (widget.an_app.exported_apk_path == "") {
+                        return;
+                      }
+
+                      var file_exists =
+                          await File(widget.an_app.exported_apk_path!).exists();
+                      if (!file_exists) {
+                        return;
+                      }
+
+                      await variable_controller
+                          .install_an_apk_file(widget.an_app.exported_apk_path);
+                    },
+                    child: Text(
+                      "Install",
                       style: TextStyle(color: Colors.blue),
                     )),
               ]

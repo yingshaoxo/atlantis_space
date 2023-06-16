@@ -1,15 +1,23 @@
 package xyz.yingshaoxo.atlantisspace
 
+import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
+import android.provider.Settings
+import android.util.Log
+import android.widget.Toast
+import androidx.core.content.FileProvider
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import org.json.JSONArray
+import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.Path
 import kotlin.io.path.createDirectory
@@ -33,7 +41,6 @@ class MainActivity: FlutterActivity() {
          */
 
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "my_kotlin_functions").setMethodCallHandler { call, result ->
-            /*
             if (call.method.contentEquals("install_apk_file")) {
                 var apk_path = call.argument<String>("apk_path")
                 if (apk_path != null) {
@@ -43,7 +50,6 @@ class MainActivity: FlutterActivity() {
                     result.error("error", "Something went wrong", null)
                 }
             }
-            */
 
             if (call.method.contentEquals("get_all_installed_apps")) {
                 var data_ = get_all_installed_apps()
@@ -212,7 +218,6 @@ class MainActivity: FlutterActivity() {
             }
         }
 
-        /*
         fun install_apk_file(file_path: String) {
             if (Global_Variable.application_content == null) {
                 return
@@ -265,6 +270,5 @@ class MainActivity: FlutterActivity() {
             }
             return result
         }
-        */
     }
 }
