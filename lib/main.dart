@@ -814,7 +814,7 @@ class _App_Information_RowState extends State<App_Information_Row> {
                     },
                     child: Text(
                       "Save",
-                      style: TextStyle(color: Colors.greenAccent[100]),
+                      style: TextStyle(color: Colors.blue[100]),
                     )),
                 TextButton(
                     onPressed: () async {
