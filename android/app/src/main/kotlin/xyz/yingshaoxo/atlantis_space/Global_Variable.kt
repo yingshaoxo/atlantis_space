@@ -1,4 +1,4 @@
-package xyz.yingshaoxo.atlantisspace
+package xyz.yingshaoxo.atlantis_space
 
 import android.app.Activity
 import android.content.Context
